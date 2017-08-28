@@ -24,9 +24,12 @@ class Jukebox
     @relay_set.get_relay_state(POWER_RELAY)
   end
 
+  def controllable?
+    true
+  end
+
   def reject_record
     @relay_set.momentary_relay(REJECT_RELAY)
     nil
   end
-
 end

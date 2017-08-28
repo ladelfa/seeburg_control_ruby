@@ -1,10 +1,31 @@
-class ApplicationController < ActionController::API
-  def test
-    render plain: "OK"
+class JukeboxController < ApplicationController
+  before_action :get_jukebox
+
+  def powerup
+    @jukebox.power_up
+    render plain: "Powering up and disabling play timer."
   end
 
-  def version
-    render plain: UsbHidRelay.new.get_device_serial
+  def powerdown_delayed
+    @jukebox.power_down false
+    render plain: "Powering down after current record finishes."
+  end
+
+  def powerdown_now
+    @jukebox.power_down true
+    render plain: "Powering down immediately."
+  end
+
+  def reject
+    @jukebox.reject_record
+    render plain: "Rejecting record."
+  end
+
+  def add_time
+  end
+
+  def get_minutes_remaining
+    # m_oPlayTimer.MinutesLeft
   end
 
   def get_current_audio_connections
@@ -18,6 +39,11 @@ class ApplicationController < ActionController::API
   def drop_audio_connections_to
     # TODO
   end
+
+  private
+    def get_jukebox
+      @jukebox = Jukebox.new
+    end
 
 =begin
     Select Case tRequest

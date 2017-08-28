@@ -1,0 +1,7 @@
+           Prefix Verb URI Pattern                  Controller#Action
+             test GET  /test(.:format)              application#test
+          version GET  /version(.:format)           application#version
+          powerup GET  /powerup(.:format)           jukebox#powerup
+powerdown_delayed GET  /powerdown_delayed(.:format) jukebox#powerdown_delayed
+    powerdown_now GET  /powerdown_now(.:format)     jukebox#powerdown_now
+           reject GET  /reject(.:format)            jukebox#reject
