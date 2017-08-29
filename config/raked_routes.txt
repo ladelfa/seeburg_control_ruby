@@ -3,6 +3,7 @@
                            version GET  /version(.:format)                            application#version
      get_current_audio_connections GET  /get_current_audio_connections(.:format)      application#get_current_audio_connections
 get_current_audio_connection_count GET  /get_current_audio_connection_count(.:format) application#get_current_audio_connection_count
+              restart_audio_stream GET  /restart_audio_stream(.:format)               application#restart_audio_stream
                            powerup GET  /powerup(.:format)                            jukebox#powerup
                  powerdown_delayed GET  /powerdown_delayed(.:format)                  jukebox#powerdown_delayed
                      powerdown_now GET  /powerdown_now(.:format)                      jukebox#powerdown_now

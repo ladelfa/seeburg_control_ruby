@@ -1,8 +1,8 @@
 class Jukebox
+  include Singleton
+
   POWER_RELAY = 1
   REJECT_RELAY = 2
-
-  include Singleton
 
   attr_accessor :play_timer_guid
 

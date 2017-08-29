@@ -15,6 +15,11 @@ class ApplicationController < ActionController::API
     render plain: AudioStream.current_audio_connection_count.to_s
   end
 
+  def restart_audio_stream
+    AudioStream.restart
+    render plain: "Audio stream has been restarted."
+  end
+
   def drop_audio_connections_to
     # TODO
   end
