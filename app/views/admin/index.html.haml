@@ -22,6 +22,21 @@
   =link_to('300', add_time_path(seconds: 300))
   seconds
 
+%p
+  add
+  =link_to('10', add_time_path(seconds: 10.minutes))
+  |
+  =link_to('30', add_time_path(seconds: 30.minutes))
+  |
+  =link_to('60', add_time_path(seconds: 60.minutes))
+  |
+  =link_to('90', add_time_path(seconds: 90.minutes))
+  |
+  =link_to('120', add_time_path(seconds: 120.minutes))
+  |
+  =link_to('180', add_time_path(seconds: 180.minutes))
+  minutes
+
 %p= link_to('clear time', clear_time_path)
 %p= link_to('get minutes remaining', get_minutes_remaining_path)
 %p= link_to('get seconds remaining', get_seconds_remaining_path)
