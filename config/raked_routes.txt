@@ -1,3 +1,4 @@
+Audio Stream seems to be running
                             Prefix Verb URI Pattern                                   Controller#Action
                               test GET  /test(.:format)                               application#test
                            version GET  /version(.:format)                            application#version
@@ -12,3 +13,4 @@ get_current_audio_connection_count GET  /get_current_audio_connection_count(.:fo
                         clear_time GET  /clear_time(.:format)                         jukebox#clear_time
              get_minutes_remaining GET  /get_minutes_remaining(.:format)              jukebox#get_minutes_remaining
              get_seconds_remaining GET  /get_seconds_remaining(.:format)              jukebox#get_seconds_remaining
+                             admin GET  /admin(.:format)                              admin#index

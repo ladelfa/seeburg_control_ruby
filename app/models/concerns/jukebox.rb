@@ -1,8 +1,8 @@
 class Jukebox
   include Singleton
 
-  POWER_RELAY = 1
-  REJECT_RELAY = 2
+  POWER_RELAY = Settings.jukebox.relay_number.power
+  REJECT_RELAY = Settings.jukebox.relay_number.reject
 
   attr_accessor :play_timer_guid
 
@@ -34,7 +34,7 @@ class Jukebox
     @relay_set.toggle_relay(POWER_RELAY, false)
     reject_record if immediate
     @needle_counter.stop
-    return powered?
+    return !powered?
   end
 
   def powered?

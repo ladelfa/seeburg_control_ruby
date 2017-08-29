@@ -1,0 +1,2 @@
+audio_stream:
+  restart_on_boot: false

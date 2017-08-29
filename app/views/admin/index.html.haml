@@ -1,0 +1,28 @@
+%H1 Seeburg Library Unit Control Administration
+
+%p= link_to('test', test_path)
+%p= link_to('version', version_path)
+%p= link_to('current connections', get_current_audio_connections_path)
+%p= link_to('current connection count', get_current_audio_connection_count_path)
+%p= link_to('restart audio stream', restart_audio_stream_path)
+%p= link_to('power up', powerup_path)
+%p= link_to('power down after current record', powerdown_delayed_path)
+%p= link_to('power down now', powerdown_now_path)
+%p= link_to('reject', reject_path)
+%p= link_to('add time (default amount)', add_time_path)
+
+%p
+  add
+  =link_to('10', add_time_path(seconds: 10))
+  |
+  =link_to('60', add_time_path(seconds: 60))
+  |
+  =link_to('120', add_time_path(seconds: 120))
+  |
+  =link_to('300', add_time_path(seconds: 300))
+  seconds
+
+%p= link_to('clear time', clear_time_path)
+%p= link_to('get minutes remaining', get_minutes_remaining_path)
+%p= link_to('get seconds remaining', get_seconds_remaining_path)
+%p= link_to('', admin_path)

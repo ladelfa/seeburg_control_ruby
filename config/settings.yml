@@ -1,0 +1,18 @@
+audio_stream:
+  restart_on_boot: true
+  port: 8080
+  restart_sleep_secs: 2
+  vlc:
+    pid_file: "/tmp/vlc.pid"
+    average_bitrate: 128
+    sample_rate: 44100
+    channels: 2
+
+jukebox:
+  relay_number:
+    power: 2
+    reject: 1
+
+usb_hid_relay:
+  default_momentary_msecs: 350
+

@@ -8,7 +8,7 @@ class UsbHidRelay
   REPORT_NBR = 0
   RELAY_COUNT = 2
 
-  DEFAULT_MOMENTARY_MSECS = 350
+  DEFAULT_MOMENTARY_MSECS = Settings.usb_hid_relay.default_momentary_msecs
 
   attr_accessor :device
 

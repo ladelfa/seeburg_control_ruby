@@ -20,8 +20,8 @@ class JukeboxController < ApplicationController
   end
 
   def add_time
-    duration = params[:seconds].to_i || 10.minutes
-    Jukebox.add_time(duration)
+    duration = params[:seconds].presence || 10.minutes
+    Jukebox.add_time(duration.to_i)
     render plain: "Enabling play timer and adding #{duration} seconds of play time."
   end
 
