@@ -1,16 +1,19 @@
 class JukeboxController < ApplicationController
   def powerup
     Jukebox.power_up
+    Jukebox.clear_time
     render plain: "Powering up and disabling play timer."
   end
 
   def powerdown_delayed
     Jukebox.power_down false
+    Jukebox.clear_time
     render plain: "Powering down after current record finishes."
   end
 
   def powerdown_now
     Jukebox.power_down true
+    Jukebox.clear_time
     render plain: "Powering down immediately."
   end
 
