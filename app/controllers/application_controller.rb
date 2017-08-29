@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
   end
 
   def get_current_audio_connection_count
-    # returns int
+    render plain: AudioStream.current_audio_connection_count.to_s
   end
 
   def drop_audio_connections_to

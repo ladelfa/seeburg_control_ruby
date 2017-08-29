@@ -1,7 +1,13 @@
-           Prefix Verb URI Pattern                  Controller#Action
-             test GET  /test(.:format)              application#test
-          version GET  /version(.:format)           application#version
-          powerup GET  /powerup(.:format)           jukebox#powerup
-powerdown_delayed GET  /powerdown_delayed(.:format) jukebox#powerdown_delayed
-    powerdown_now GET  /powerdown_now(.:format)     jukebox#powerdown_now
-           reject GET  /reject(.:format)            jukebox#reject
+                            Prefix Verb URI Pattern                                   Controller#Action
+                              test GET  /test(.:format)                               application#test
+                           version GET  /version(.:format)                            application#version
+     get_current_audio_connections GET  /get_current_audio_connections(.:format)      application#get_current_audio_connections
+get_current_audio_connection_count GET  /get_current_audio_connection_count(.:format) application#get_current_audio_connection_count
+                           powerup GET  /powerup(.:format)                            jukebox#powerup
+                 powerdown_delayed GET  /powerdown_delayed(.:format)                  jukebox#powerdown_delayed
+                     powerdown_now GET  /powerdown_now(.:format)                      jukebox#powerdown_now
+                            reject GET  /reject(.:format)                             jukebox#reject
+                          add_time GET  /add_time(.:format)                           jukebox#add_time
+                        clear_time GET  /clear_time(.:format)                         jukebox#clear_time
+             get_minutes_remaining GET  /get_minutes_remaining(.:format)              jukebox#get_minutes_remaining
+             get_seconds_remaining GET  /get_seconds_remaining(.:format)              jukebox#get_seconds_remaining

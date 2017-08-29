@@ -1,49 +1,44 @@
 class JukeboxController < ApplicationController
-  before_action :get_jukebox
-
   def powerup
-    @jukebox.power_up
+    Jukebox.power_up
     render plain: "Powering up and disabling play timer."
   end
 
   def powerdown_delayed
-    @jukebox.power_down false
+    Jukebox.power_down false
     render plain: "Powering down after current record finishes."
   end
 
   def powerdown_now
-    @jukebox.power_down true
+    Jukebox.power_down true
     render plain: "Powering down immediately."
   end
 
   def reject
-    @jukebox.reject_record
+    Jukebox.reject_record
     render plain: "Rejecting record."
   end
 
   def add_time
+    duration = params[:seconds].to_i || 10.minutes
+    Jukebox.add_time(duration)
+    render plain: "Enabling play timer and adding #{duration} seconds of play time."
+  end
+
+  def clear_time
+    Jukebox.clear_time
+    render plain: "Cleared play timer"
   end
 
   def get_minutes_remaining
-    # m_oPlayTimer.MinutesLeft
+    minutes = (Jukebox.time_remaining / 60).ceil
+    render plain: minutes.to_s
   end
 
-  def get_current_audio_connections
-    # returns newline-separated list of current connection IP addresses
+  def get_seconds_remaining
+    seconds = Jukebox.time_remaining.ceil
+    render plain: seconds.to_s
   end
-
-  def get_current_audio_connection_count
-    # returns int
-  end
-
-  def drop_audio_connections_to
-    # TODO
-  end
-
-  private
-    def get_jukebox
-      @jukebox = Jukebox.new
-    end
 
 =begin
     Select Case tRequest
