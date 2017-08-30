@@ -26,3 +26,5 @@ config/environments/*.local.yml
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+
+/db/needle_time.txt

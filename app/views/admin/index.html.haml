@@ -40,4 +40,9 @@
 %p= link_to('clear time', clear_time_path)
 %p= link_to('get minutes remaining', get_minutes_remaining_path)
 %p= link_to('get seconds remaining', get_seconds_remaining_path)
+
+%p
+  set jukebox status to
+  != Jukebox::STATES.map{|s| link_to(s, set_status_path(status: s))}.join(" | ")
+
 %p= link_to('', admin_path)

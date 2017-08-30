@@ -31,6 +31,14 @@ module AudioStream
     File.exists?(PID_FILE)
   end
 
+  def self.pid
+    if File.exists?(PID_FILE)
+      File.read(PID_FILE)
+    else
+      ''
+    end
+  end
+
   def self.restart
     stop
     sleep RESTART_SLEEP

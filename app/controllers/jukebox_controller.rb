@@ -23,7 +23,8 @@ class JukeboxController < ApplicationController
   end
 
   def add_time
-    duration = params[:seconds].presence || 10.minutes
+    duration = params[:seconds].presence || Jukebox::ADD_TIME_DEFAULT_MINUTES.minutes
+
     Jukebox.add_time(duration.to_i)
     render plain: "Enabling play timer and adding #{duration} seconds of play time."
   end
@@ -43,6 +44,14 @@ class JukeboxController < ApplicationController
     render plain: seconds.to_s
   end
 
+  def set_status
+    if params[:status].presence && params[:status].to_sym.in?(Jukebox::STATES)
+      Jukebox.status = params[:status].to_sym
+      render plain: "Set status '#{params[:status]}'"
+    else
+      render plain: "Invalid status '#{params[:status]}'"
+    end
+  end
 =begin
     Select Case tRequest
       Case "/reject"

@@ -57,11 +57,6 @@ class PlayTimer
     end
   end
 
-  def set_callback(callback_obj, callback_method)
-    @callback_obj = callback_obj
-    @callback_method = callback_method
-  end
-
   def do_callback(guid)
     #puts "CALLBACK #{guid}"
     @callbacks[guid.to_s].call

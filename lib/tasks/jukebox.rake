@@ -13,4 +13,24 @@ namespace :jukebox do
   task reject_record: :environment do
     Jukebox.reject_record
   end
+
+  desc "Play a single record"
+  task play_single: :environment do
+    Jukebox.play_single_record
+  end
+
+  desc "Put jukebox in 'maintenace' mode"
+  task maintenance: :environment do
+    Jukebox.status = :maintenance
+  end
+
+  desc "Put jukebox in 'off' mode"
+  task off: :environment do
+    Jukebox.status = :off
+  end
+
+  desc "Put jukebox in 'standby' mode"
+  task standby: :environment do
+    Jukebox.status = :standby
+  end
 end

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/clear_time', to: 'jukebox#clear_time'
   get '/get_minutes_remaining', to: 'jukebox#get_minutes_remaining'
   get '/get_seconds_remaining', to: 'jukebox#get_seconds_remaining'
+  get '/set_status', to: 'jukebox#set_status'
 
   get '/admin', to: 'admin#index'
 end

@@ -9,9 +9,35 @@ audio_stream:
     channels: 2
 
 jukebox:
+  add_time:
+    default_minutes: 10
+
   relay_number:
     power: 2
     reject: 1
+
+  require_audio_connection: # Power down if no one's been listening to the audio stream for <timeout_secs>
+    enabled: true
+    timeout_secs: 60
+
+  runout_saver:         # Prevent a record that won't auto-reject (locked groove, too wide a runout, etc.)
+    #                   # from playing forever by forcing a powerdown <delay_secs> after the PlayTimer runs out.
+    enabled: true
+    delay_secs: 600
+
+  single_record_play:
+    power_secs: 5       # Keep the power on this long to start a single record
+    needle_secs: 180    # Increment the needle time this much, the average length of a record
+
+  startup_status: :standby
+
+public_server:
+  send_status_changes: true
+  status_cgi:
+    url: "http://www.seeburgremote.net/set_jukebox_status.rb?jukebox=seeburg"
+    status_param: 'status'
+    additional_params:
+      jukebox: :seeburg
 
 usb_hid_relay:
   default_momentary_msecs: 350
