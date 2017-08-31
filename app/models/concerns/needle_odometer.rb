@@ -78,7 +78,7 @@ class NeedleOdometer
   end
 
   def periodically_persist!
-    puts "pp! #{last_value}"
+    #puts "pp! #{last_value}"
     persist
     NeedleOdometerJob.set(wait: PERISTANCE_INTERVAL_SECS).perform_later() #if running?
   end

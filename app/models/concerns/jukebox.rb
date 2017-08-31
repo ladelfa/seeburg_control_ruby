@@ -1,8 +1,8 @@
 class Jukebox
   include Singleton
 
-  POWER_RELAY = Settings.jukebox.relay_number.power
-  REJECT_RELAY = Settings.jukebox.relay_number.reject
+  POWER_RELAY = Settings.jukebox.relay_number.mech_power
+  REJECT_RELAY = Settings.jukebox.relay_number.scan_reject
 
   ADD_TIME_DEFAULT_MINUTES = Settings.jukebox.add_time.default_minutes
 
@@ -16,11 +16,7 @@ class Jukebox
 
   def initialize
     @relay_set = UsbHidRelay.new
-
-    @public_server = PublicServer.new
     @needle_odometer = NeedleOdometer.instance
-
-    @status = STARTUP_STATUS
   end
 
   def public_controllable?
@@ -35,7 +31,7 @@ class Jukebox
     new_status = new_status.to_sym
     if new_status.in?(STATES)
       @status = new_status
-      @public_server.update_status(new_status)
+      PublicServer.update_status(new_status)
     end
   end
 
@@ -98,5 +94,9 @@ class Jukebox
 
   def self.respond_to_missing?(m, a)     # :nodoc:
     instance.respond_to?(m)
+  end
+
+  def self.on_launch
+    instance.status = STARTUP_STATUS
   end
 end

@@ -33,4 +33,9 @@ namespace :jukebox do
   task standby: :environment do
     Jukebox.status = :standby
   end
+
+  desc "Set jukebox URL on public server"
+  task set_jukebox_url: :environment do
+    PublicServer.update_jukebox_url
+  end
 end

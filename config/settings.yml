@@ -1,6 +1,7 @@
 audio_stream:
-  restart_on_boot: true
+  restart_on_launch: true
   port: 8080
+  path: '/stream.mp3'
   restart_sleep_secs: 2
   vlc:
     pid_file: "/tmp/vlc.pid"
@@ -13,8 +14,8 @@ jukebox:
     default_minutes: 10
 
   relay_number:
-    power: 2
-    reject: 1
+    mech_power: 2
+    scan_reject: 1
 
   require_audio_connection: # Power down if no one's been listening to the audio stream for <timeout_secs>
     enabled: true
@@ -32,9 +33,18 @@ jukebox:
   startup_status: :standby
 
 public_server:
+  update_jukebox_url_on_launch: true
+  jukebox_url_cgi_settings:
+    url: "http://www.seeburgremote.net/set_jukebox_url.rb"
+    stream_path:     ~  # nil to inherit from audio_stream:path
+    audio_port:   8080  # audio port as seen from WAN, outside of router, or nil to inherit from audio_stream:port
+    control_port: 8081  # control port as seen from WAN, or nil to inherit from the appication's port.
+    additional_params:
+      jukebox: :seeburg
+
   send_status_changes: true
   status_cgi:
-    url: "http://www.seeburgremote.net/set_jukebox_status.rb?jukebox=seeburg"
+    url: "http://www.seeburgremote.net/set_jukebox_status.rb"
     status_param: 'status'
     additional_params:
       jukebox: :seeburg
