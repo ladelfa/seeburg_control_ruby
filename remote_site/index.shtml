@@ -116,12 +116,10 @@
       </div>
       <h2>Notes:</h2>
       <div class= "server_notice">
-        <b>Update 18 April 2013:</b>
-        Troubleshooting player connection issues from the other side of the globe, I think
-        I've fixed the problems keeping it from playing in Safari on Mac (and probably
-        a bunch of other browsers I don't use at home). Also, please note that if you have
-        a slow machine and/or web connection, starting the first record may take a matter
-        of <i>minutes</i>, not seconds. Sorry; I'm not sure there's much I can do about this.
+        <b>Update 5 October 2016:</b>
+        We're back up and running again. The jukebox control software is now running on a Quantum Access LAN Fanless Mini PC Stick under Windows 10
+    (a significant upgrade from my old 2005 Dell desktop computer, running XP Server, which bit the dust at the beginning of September).
+    There may be occasional interruptions while this configuration undergoes refinement.
       </div>
       <ul>
         <li>I'm making lots of improvements to this page, and to the software which controls the jukebox
