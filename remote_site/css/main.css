@@ -1,0 +1,29 @@
+body { font-family:Verdana,Geneva,'DejaVu Sans',sans-serif; font-size:15px; line-height:120%; }
+a { 
+  color: #781e07;
+  font-weight: bold;
+  text-decoration:none;
+}
+a:hover {
+  text-decoration:underline;
+}
+h1 { font-size:1.7em; }
+h2 { font-size:1.2em; }
+.asof {
+  font-size: 0.7em;
+}
+ul { font-size:0.8em; }
+ul li { margin-top:1em; }
+
+div.controller { display: none }
+
+img.block { display:block }
+
+.server_notice { 
+  background: white; 
+  font-size:0.8em;
+  padding: 1.0em;
+  margin-left: 2.0em;
+  border: 1px solid blue;
+  width: 80%;
+}

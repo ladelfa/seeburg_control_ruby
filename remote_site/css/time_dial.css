@@ -1,0 +1,73 @@
+
+#timeDial{
+  height:100px;
+  width:100px;
+  cursor: pointer;
+}
+
+.dial{
+  /* The .dial div. Created dynamically by jQuery */
+  background-color:#c7c1c5;
+  background:url(dial_background.png) no-repeat right top;
+  height:100px;
+  width:100px;
+  position:relative;
+  float:left;
+}
+
+.dial .rotate{
+  /* There are two .rotate divs - one for each half of the background */
+  position:absolute;
+  width:100px;
+  height:100px;
+  top:0;
+  left:0;
+}
+
+.rotate.right{
+  display:none;
+  z-index:11;
+}
+
+.dial .bg, .dial .front{
+  width:50px;
+  height:100px;
+  background-color:#c7c1c5;
+  background:url(dial_background.png) no-repeat left top;
+  position:absolute;
+  top:0;
+}
+
+.dial .display{
+  /* Holds the number of seconds, minutes or hours respectfully */
+  position:absolute;
+  width:100px;
+  font-family:"Arial", "Helvetica", sans-serif;
+  font-weight: bold;
+  z-index:20;
+  color:#ba2c2c;
+  font-size:30px;
+  letter-spacing: -1px;
+  text-align:center;
+  top:40px;
+  left:0;
+  
+}
+
+/* The left part of the background: */
+
+.dial .bg.left{ left:0; }
+
+/* Individual styles for each color: */
+.red .bg.left{ background:url(dial_red.png) no-repeat left top; }
+
+/* The right part of the background: */
+.dial .bg.right{ left:50px; }
+
+.red .bg.right{ background:url(dial_red.png) no-repeat right top; }
+
+
+.dial .front.left{
+  left:0;
+  z-index:10;
+}

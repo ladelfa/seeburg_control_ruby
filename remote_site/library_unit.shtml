@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+  <HEAD>
+    <title>On The Seeburg 200-LU1 Library Unit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <script type="text/javascript" src="js/flowplayer-3.2.6.min.js"></script>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.popeye.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.popeye.style.css" media="screen" />
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.popeye-2.0.4.min.js"></script>
+
+
+    <STYLE>
+      body { font-family:Verdana,Geneva,'DejaVu Sans',sans-serif; font-size:15px; }
+      h2 { font-size:1.2em; }
+      .asof {
+        font-size: 0.7em;
+      }
+      dt, dd { margin-top: 20px }
+      dt { font-weight:bold; }
+    </STYLE>
+  
+  </HEAD>
+  <BODY bgcolor="#c7c1c5" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    <!--#config timefmt="%A %B %d, %Y %I:%M %p %Z" -->  
+    <div style="margin:0;padding:0;height=133px;"><img class="block" src="/images/seeburgremote_page_01.jpg" width="800" height="174" alt="SeeburgRemote.Net &mdash; An Actual Jukebox on the Actual Internet">
+    </div>
+    <div style="float:left; width:520px;"><img class="block" src="/images/seeburgremote_page_02.jpg" width="484" height="461" alt="">
+
+      <div style="padding:30px;">
+          <div class="ppy" id="ppy1">
+              <ul class="ppy-imglist">
+                  <li>
+                      <a href="/images/night_shot.jpg">
+                          <img src="/images/night_shot.240.jpg" alt="The Seeburg 200 LU-1 at night." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/back.jpg">
+                          <img src="/images/back.240.jpg" 
+                          alt="From the back, open for servicing. You can't see them, but I installed felt glides on the underside of the cabinet to make it easier to rotate." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/mech_head_left.jpg">
+                          <img src="/images/mech_head_left.240.jpg" 
+                          alt="The mechanism head playing a record. The original stock tone arm is gold-colored, with a &quot;blackhead&quot; mono cartridge. This blue tone arm is from a 1970s-era Seeburg and uses the Pickering 340D stereo cartridge." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/seeburg_guts_on_hold.jpg">
+                          <img src="/images/seeburg_guts_on_hold.240.jpg" 
+                          alt="Early in the tinkering process: the Select-o-matic mechanism removed from the cabinet." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/seeburg_control_screenshot.png">
+                          <img src="/images/seeburg_control_screenshot.240.png" 
+                          alt="The &quot;SeeburgControl&quot; application I wrote to convert HTTP requests to relay states." />
+                      </a>
+                  </li>
+              </ul>
+
+              <div class="ppy-outer">
+                  <div class="ppy-stage">
+                      <div class="ppy-nav">
+                        <div class="nav-wrap">
+                            <a class="ppy-prev" title="Previous image">Previous image</a>
+                            <a class="ppy-switch-enlarge" title="Enlarge">Enlarge</a>
+                            <a class="ppy-switch-compact" title="Close">Close</a>
+                            <a class="ppy-next" title="Next image">Next image</a>
+                        </div>
+                      </div>  
+                      <div class="ppy-counter">
+                          <strong class="ppy-current"></strong> / <strong class="ppy-total"></strong> 
+                      </div>
+                  </div>
+              </div>
+              <div class="ppy-caption">
+                  <span class="ppy-text"></span>
+              </div>
+          </div>
+      </div>
+    
+    </div>
+    <div style="margin:0 80px 30px 520px;">
+      <h1>The Seeburg 200 LU-1 Library Unit</h1>
+      <p><a href="/">Back to the Main Page</a></p>
+      
+      <h2>History and Design</h2>
+        <p>
+        In 1952, the Seeburg jukebox company brought to market a set of "library units" for use in 
+        homes and in commercial/institutional applications where the coin operation and song selection 
+        features of a standard jukebox would have been inappropriate. Examples of this might be factories, 
+        office buildings, 
+        and private clubs. The library units were also used to provide automatic record playing
+        at certain radio stations during hours where a human operator was unavailable.
+        </p>
+        <p>
+        The library unit is, essentially, the record-playing guts of a 200-selection Seeburg jukebox mounted in a
+        simple wooden case with a glass front. Inside the case with it is a monaural phono
+        preamplifier, integrated with a power supply for the mechanism. A fancier "Console" version of the 
+        library unit also included a power amplifier and speakers in an attractive floor-standing 
+        unit. There was also a "Custom" version of the LU made with only the front panel of the case and its glass
+        door, for applications where it was to be mounted flush directly into the wall. 
+        </p>
+        <p>
+        The mechanism is placed inside the
+        case backwards, so that the side usually visible to the customer in the coin-operated 
+        Seeburgs of the period is hidden from view, and the side usually visible only to the 
+        jukebox serviceman in a coin-op -- the side from which one loads and unloads all the records 
+        -- is in front.
+        </p>
+        <p>
+        A series of small levers across the front of the unit, underneath the record slots, determines whether
+        the mechanism will stop and play the left ("A") side or the right ("B") side of the record as it 
+        passes, or both, or neither. Thus, the operator of the LU can determine all at once which selections
+        will be played, but the order in which they will play is determined solely by which slots the records
+        are placed in: it plays all the selected A-sides as it moves from slot 1 to 100, and then all the B-sides
+        as it travels back from slot 100 to 1.
+        </p>
+        <p>
+        Later in the decade, Seeburg brought out versions of the LU that played twelve-inch 
+        33 1/3 rpm records with a more elaborate, electronic, record selection system based on the
+        "Tormat" wound-core memory units developed for their coin-op jukes.
+        </p>
+        <p>
+        The indisputable authoritative web reference on Seeburg Library Units is 
+        <A href="http://www.seeburgeds.com/">Seeburg Ed's</A>, and those seeking further information on these
+        machines are encouraged to explore that site.
+        </p>
+
+      <h2>This Particular Unit</h2>        
+        <p>
+        The machine playing here at SeeburgRemote.Net was manufactured in 1953. It has a flip-down glass
+        door with a knob (others of this era had either a keyed lock instead of a knob, or a three-panel 
+        sliding glass door). It came with a set of black hairpin-shaped legs made of steel, though
+        currently it resides closer to eye-level, leglessly, atop a large lateral file cabinet.
+        It's pretty heavy.
+        </p>
+        <p>
+        It also came with a small brown vinyl book with a hundred numbered pockets 
+        behind little cellophane windows. As owner of the LU, you were meant to slip those small
+        paper slips, typically displayed in coin-op jukes showing the artist's name and the song titles,
+        into each of the little pockets so as to keep track of which records are in each slot without 
+        having to resort to, say, a notebook and a pencil.        
+        </p>
+        <p>
+        As discussed on the <A href="faqs.shtml">FAQ Page</A>, this LU has undergone some modifications
+        that permit it to play records in stereo and at a lighter tracking force than that of the original 
+        tone arm and monaural cartridge it shipped with originally. Then of course there's all the 
+        internet stuff.
+        </p>
+        
+        
+      <h2>On The Nature Of A Record-Playing Machine</h2>
+        <p>
+        In the iPod age, what is the value of a mechanical device for playing records?
+        </p>
+        <p>
+        For me, there's almost a life lesson in it. Records, as you play them, change. They wear.
+        They sound ever so slightly different every time they speak. They don't last forever.
+        You can pack them away in a box and think about them as these abstract objects you own,
+        or you can bring them out and play them, destroying them gradually in the process.
+        </p>
+        <p>
+        And this box, with all the moving parts, made so long ago, yet it was so magnificently well-designed
+        that nearly sixty years later, it operates as well as (better than?) it did the day it 
+        rolled off the production line. Nothing else in my home as old as this gets daily use,
+        and I would be hard-pressed to name anything that does that I can forsee being in this 
+        kind of operational condition a half-century down the road.
+        </p>
+        <p>
+        Then there are the records. Some of these are, yes, "hits" popular enough to have been digitized and 
+        copied a million times over. They'll be around as long as data is read. But at least a few of these,
+        perhaps there are only copies numbering in the dozens, maybe hundreds. How many of them have been
+        heard by anyone in the last year? The last decade? Sometimes as I listen to these records, I
+        try to imagine the whole experience of everyone who was there the day that 
+        the sounds drifting through the air hit the diaphragm of the microphone and begin their
+        long, inexorable march through time towards obscurity, towards immortality, towards archeology. 
+        Singles, especially, were so often the work of artists and labels too poor (or unsuccessful) to merit
+        the investment of the long-play album. 
+        </p>
+        <p>
+        One of the peculiaries of the LU is that, loaded with records, it's nearly impossible to tell 
+        or remember what's in each slot. And they all look alike -- the one that sold millions is
+        indistinguishable from the one that sold a hundred-fifty. So the natural inclination is to set all
+        the levers on to play both sides (this is my standard practice, at any rate). This means that
+        in a given listening session I am as likely to hear something famous as something obscure, and 
+        I will hear as many weird, throwaway, rough B-sides as polished, fussed-over A-sides. In a time
+        when on-demand media permits us to hear exactly what we already know we like at any given moment,
+        there's something to be said for interjecting some surprises, for experiencing things that popular 
+        culture has imbued with value because of their fame alongside those which fame has left behind
+        despite their intrinsic merit.
+        </p>
+        <p>
+        So in the simple act of turning this machine on, which I can do in tremendous luxury 
+        from anywhere in my house
+        -- or indeed, practially anywhere on the planet -- by sliding one finger across
+        the trackpad of my notebook computer and giving a gentle tap, I feel this confluence of the 
+        lasting and the ephemeral, of the remembered and the forgotten, 
+        of the history of man and the life of a man.
+        </p>
+        <p>
+        And occasionally I have to pull it away from the wall and brush fuzz off the needle, so there's a
+        small amount of exercise involved as well.
+        </p>
+      <p style="clear:both;padding:3em 0;"><a href="/">Back to the Main Page</a></p>
+    </div>
+    <!--#include file="_copyright.shtml" -->
+
+    <script type="text/javascript">
+        <!--//<![CDATA[
+
+        $(document).ready(function () {
+            var opts = {
+                navigation: 'permanent',
+                caption:    'hover',
+                opacity:    0.8
+            }
+
+            $('#ppy1').popeye(opts);
+        });
+
+        //]]>-->
+    </script>
+
+  </BODY>
+</HTML>

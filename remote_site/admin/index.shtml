@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+  
+  <HEAD>
+    <title>Seeburg Remote Administration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />  
+    <script type="text/javascript" src="/js/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="/js/time_dial.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/time_dial.css" /> 
+    
+    <style>
+      fieldset { font-size: 0.8em; width: 40em; margin: 0 0 1em; padding: 0 1.5em;}
+      fieldset legend { font-weight: bold }
+    </style>
+  </HEAD>
+  
+  <BODY bgcolor="#c7c1c5" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    <div style="margin:0;padding:0;height=133px;"><img class="block" src="/images/seeburgremote_page_01.jpg" width="800" height="174" alt="SeeburgRemote.Net &mdash; An Actual Jukebox on the Actual Internet">
+    </div>
+    <div style="float:left; width:520px;"><img class="block" src="/images/seeburgremote_page_02.jpg" width="484" height="461" alt="">
+    </div>
+    <div style="margin:0 80px 30px 520px;">
+      <h1>Jukebox Control and Administration</h1>
+      <p><a href="/">Back to the Main Page</a></p>
+
+      <fieldset><legend>Status</legend>
+        <p>Current jukebox status is "<span id='currentStatus'>Loading ...</span>"</p>
+        <p>Server-cached query says <span id="current_listener_count">(...)</span> audio connection(s) currently.</p>
+        <div id="current_listener_list"></div>
+      </fieldset>
+
+      <fieldset><legend>Logs</legend>
+         <p><A href="read_logs.rb">Show Jukebox Control Logs, last 7 days</a></p>
+         <p><A href="/stats">Stats</a></p>
+      </fieldset>
+      
+      <fieldset><legend>Control</legend>
+        <p><A href="/control.rb?session=0&action=powerup">Power Up Permanently</A></p>
+
+        <p><A href="/control.rb?session=0&action=powerdown_now">Power Down Now</A></p>
+        <p><A href="/control.rb?session=0&action=powerdown_delayed">Power Down After This Record</A></p>
+
+        <p><A href="/control.rb?session=0&action=add_time">Enable Timer and Add Ten Minutes</A></p>
+
+        <div style="float:right" id="timeDial"></div>
+
+        <p><A href="/control.rb?session=0&action=get_minutes_remaining">Show Remaining Minutes on Timer</A>
+        (<span id="minutesLeft">?</span> minutes left)</p>
+
+        <p><A href="/control.rb?session=0&action=reject">Reject Record</A></p>
+        <p><A href="/control.rb?session=0&action=test">Test</A></p>
+        <p><A href="/control.rb?session=0&action=version">Version</A></p>
+      </fieldset>
+
+
+      <p style="clear:both;padding:3em 0;"><a href="/">Back to the Main Page</a></p>
+    </div>
+    
+
+    <script language="JavaScript">
+
+      $(document).ready(function(){
+
+        $('#timeDial').timeDial({
+          max: 120, 
+          callback_freq: 1000, 
+          callback_function: function(){ 
+            return(parseInt($('#minutesLeft').html())); 
+          }
+        }).click(function(){
+          $.get('/control.rb?session=0&action=add_time');
+          updateStatus();
+        });
+
+        updateStatus = function(){
+          $.get('/control.rb?session=0&action=get_current_status', function(d){
+            $('#currentStatus').html(d);
+          });
+          $.get('/control.rb?session=0&action=get_minutes_remaining', function(d){
+            $('#minutesLeft').html(d);
+          });
+          $.get('/control.rb?session=0&action=get_current_audio_connection_count', function(d){
+            $('#current_listener_count').html(d);
+          });
+          $.get('/control.rb?session=0&action=get_current_audio_connections', function(d){
+            var listeners = d.split('\n');
+            html_listeners = listeners.map(function(val) {
+              return '<li>' + val + '&nbsp;<a href="/control.rb?session=0&action=drop_audio_connections_to&ip=' + val + '">drop</a></li>' 
+            })
+            $('#current_listener_list').html('Live list (from home):<ol>' + html_listeners.join('') + '</ol>');
+          });
+        }
+        updateStatus();
+        setInterval(updateStatus, 30000);
+      });
+    </script> 
+
+  </BODY>
+</HTML>
+

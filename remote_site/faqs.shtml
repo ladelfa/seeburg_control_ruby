@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+  <HEAD>
+    <title>Seeburg Remote FAQs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <script type="text/javascript" src="js/flowplayer-3.2.6.min.js"></script>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.popeye.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.popeye.style.css" media="screen" />
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.popeye-2.0.4.min.js"></script>
+
+
+    <STYLE>
+      body { font-family:Verdana,Geneva,'DejaVu Sans',sans-serif; font-size:15px; }
+      h2 { font-size:1.2em; }
+      .asof {
+        font-size: 0.7em;
+      }
+      dt, dd { margin-top: 20px }
+      dt { font-weight:bold; }
+    </STYLE>
+  
+  </HEAD>
+  <BODY bgcolor="#c7c1c5" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    <!--#config timefmt="%A %B %d, %Y %I:%M %p %Z" -->  
+    <div style="margin:0;padding:0;height=133px;"><img class="block" src="/images/seeburgremote_page_01.jpg" width="800" height="174" alt="SeeburgRemote.Net &mdash; An Actual Jukebox on the Actual Internet">
+    </div>
+    <div style="float:left; width:520px;"><img class="block" src="/images/seeburgremote_page_02.jpg" width="484" height="461" alt="">
+
+      <div style="padding:30px;">
+          <div class="ppy" id="ppy1">
+              <ul class="ppy-imglist">
+                  <li>
+                      <a href="/images/night_shot.jpg">
+                          <img src="/images/night_shot.240.jpg" alt="The Seeburg 200 LU-1 at night." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/back.jpg">
+                          <img src="/images/back.240.jpg" 
+                          alt="From the back, open for servicing. You can't see them, but I installed felt glides on the underside of the cabinet to make it easier to rotate." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/mech_head_left.jpg">
+                          <img src="/images/mech_head_left.240.jpg" 
+                          alt="The mechanism head playing a record. The original stock tone arm is gold-colored, with a &quot;blackhead&quot; mono cartridge. This blue tone arm is from a 1970s-era Seeburg and uses the Pickering 340D stereo cartridge." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/seeburg_guts_on_hold.jpg">
+                          <img src="/images/seeburg_guts_on_hold.240.jpg" 
+                          alt="Early in the tinkering process: the Select-o-matic mechanism removed from the cabinet." />
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/images/seeburg_control_screenshot.png">
+                          <img src="/images/seeburg_control_screenshot.240.png" 
+                          alt="The &quot;SeeburgControl&quot; application I wrote to convert HTTP requests to relay states." />
+                      </a>
+                  </li>
+              </ul>
+
+              <div class="ppy-outer">
+                  <div class="ppy-stage">
+                      <div class="ppy-nav">
+                        <div class="nav-wrap">
+                            <a class="ppy-prev" title="Previous image">Previous image</a>
+                            <a class="ppy-switch-enlarge" title="Enlarge">Enlarge</a>
+                            <a class="ppy-switch-compact" title="Close">Close</a>
+                            <a class="ppy-next" title="Next image">Next image</a>
+                        </div>
+                      </div>  
+                      <div class="ppy-counter">
+                          <strong class="ppy-current"></strong> / <strong class="ppy-total"></strong> 
+                      </div>
+                  </div>
+              </div>
+              <div class="ppy-caption">
+                  <span class="ppy-text"></span>
+              </div>
+          </div>
+      </div>
+    
+    </div>
+    <div style="margin:0 80px 30px 520px;">
+      <h1>Frequently Asked Questions</h1>
+      <h2>Some of Which are Fake</h2>
+      <p><a href="/">Back to the Main Page</a></p>
+      
+      <dl>
+
+        <dt>Is there really a jukebox online, or is this a sound file playing on your server?</dt>
+        <dd>
+            At the moment, if there's music streaming, it's because it's coming from an actual jukebox that's playing
+            in my house in Los Angeles. I'll admit I've toyed with the idea of capturing the mp3 stream to disk
+            and then replaying it at times of day when the juke box is off, but that seems to me to be sort of missing
+            the fundamental point of the whole exercise.
+        </dd>
+
+        <dt>That being ...?</dt>
+        <dd>
+            To mix some really old technology with some really modern technology.
+        </dd>
+
+
+        <dt>So why not play the jukebox all the time?</dt>
+        <dd>
+            Besides the power consumption, there's a certain amount of cumulative wear on the needle 
+            (replaceable) and records (not replaceable, for the most part) to take into consideration. 
+            (The jukebox mechanism itself is designed to run essentially continuously for years with 
+            only occasional lubrication.) 
+            It's my desire not to waste resources playing the juke when there's likely not to be anyone 
+            out there listening to it. 
+            More importantly, though, the jukebox makes a loud ka-chunk noise
+            every time it goes from record to record. There are times during the day when I need silence
+            to accomplish my work, and at night, well, I'm sure you understand.
+        </dd>
+
+        <dt>When is it typically on, then?</dt>
+        <dd>
+            Try Friday mornings, weekday afternoons, and weekend daytimes in the Pacific time zone.
+        </dd>
+
+        <dt>What does it mean when the jukebox is "in standby mode"?</dt>
+        <dd>
+            It means it's not playing at the moment, but it's available to be turned on over the 
+            web by a user such as yourself. Scroll down the main page and click the circle with a number in it.
+            Each time you do, you'll add ten minutes of playing time, up to a maximum of two hours. Think of it
+            as like putting dimes in the coin slot, baby. 
+        </dd>
+            
+        <dt>What's the number represent?</dt>
+        <dd>
+            Approximately how many minutes are left. If it reaches zero and there's no one around to punch in
+            some additional time, it will complete whatever record it's playing and then go back
+            into standby mode to conserve power.
+        </dd>
+
+        <dt>I'm clicking the play timer and nothing's happening. Am I doing it wrong?</dt>
+        <dd>
+            Probably not, but if the jukebox is "off" (e.g. when it's the middle of the night here), 
+            or in maintenance mode, then play time cannot be added. Also, there are times when the jukebox
+            will just be fixed "on" without involving the timer, because I'm at home, listening to it.
+        </dd>
+
+        <dt>If I hear a song I like, when will it play again?</dt>
+        <dd>
+            Depends how many records are loaded in the rack currently. If all 100 slots are filled, the whole
+            cycle can take about ten hours. Typically, though, I put 20-30 in so I can hear them once
+            or twice before I take them out. 20 records &times; 2 sides, each about 3 minutes = 2 hours.
+        </dd>
+
+        <dt>I was listening to a song here and all of a sudden it stopped and a new one started. What happened?</dt>
+        <dd>
+            Perhaps someone clicked the reject button at the bottom of the main page, causing the jukebox to 
+            stop playing the current selection and move on to the next one.
+        </dd>
+
+        <dt>How does that work?</dt>
+        <dd>
+            It's pleasingly complicated. When you click the onscreen button and okay past the warning message,
+            your browser sends an AJAX request back to the public webserver. A CGI script, written in Ruby,
+            checks to see if you're authorized to reject the record, and if so it sends a 
+            request down to my home computer, the one the jukebox is attached to. An application there, 
+            written in VB.Net, listens for incoming HTTP requests on a specified port. It authenticates
+            the request and then sends an appropriate series of commands out a virtual RS-232 (or "Com") port.
+            An automation board, attached to the computer via USB, responds to these commands by, in this
+            case, closing a relay attached to a pair of wires which go into the jukebox mechanism and trigger
+            an operational sequence that lifts the tone arm, puts the record back, and scans for the next one.            
+        </dd>
+
+        <dt>Wow. You have to do that any time you want to skip a record?</dt>
+        <dd>
+          I don't, because there's a button on the front of the jukebox that accomplishes the same thing 
+          as closing the relay, and I can just walk up and press it with my finger.
+        </dd>
+
+        <dt>How do I know if I'm authorized to reject a record?</dt>
+        <dd>
+          Everybody is, for now. If you do it too frequently, and to records I like, I'm liable to 
+          revoke your rejection privileges.
+        </dd>
+
+        <dt>Sometimes it doesn't seem to work.</dt>
+        <dd>
+           Occasionally I'll put the jukebox in a mode where it plays, and you can listen to it, but 
+           rejecting records remotely is temporarily disabled, e.g. because I'm having a party and don't want
+           to hear halves of songs.
+        </dd>
+
+        <dt>The machine keeps playing I hear a song I hate. How can I get you to take it out permanently?</dt>
+        <dd>
+            Email me and we can debate it if I disagree. In the meantime, take comfort in the fact that
+            I usually rotate the whole set of records out two to five times a month.
+        </dd>
+
+        <dt>Can I get the machine to skip directly to a record I especially like?</dt>
+        <dd>
+            Not yet, but that's in my future projects list, along with Twitter-integrated automation.
+        </dd>
+
+        <dt>Who wrote the software you're using to do this?</dt>
+        <dd>
+            I did. Software development is one of my hobbies.
+        </dd>
+
+        <dt>Are you doing this to make money?</dt>
+        <dd>
+            Nope, I just like old phonographs and, more importantly, old records.
+        </dd>
+
+        <dt>Where did you get this thing?</dt>
+        <dd>
+            I bought it off Craigslist from a couple in Glendale, CA. The man said he'd had it since his
+            youth and I believe him. 
+        </dd>
+
+        <dt>Did it work?</dt>
+        <dd>
+            Kind of. I needed to have it serviced before it would play properly, though, so I took it to
+            Warren Rowe in El Monte. He and his associate Eddie took the whole thing apart, cleaned and 
+            lubricated everything, reassembled and adjusted it to factory specifications. He also removed the
+            original 1953 mono tone arm and cartridge assembly and replaced it with a stereo assembly from 
+            a later model Seeburg. That is why you hear records in brilliant living stereo.
+        </dd>
+
+        <dt>And then?</dt>
+        <dd>
+            Then I brought it home and installed a Behringer USB-enabled phono preamp and connected it to my 
+            server. There are some other steps involved, the end result of which is that the audio comes out
+            as an MP3 HTTP stream. At home, I use iTunes and a few AirPort Expresses so that the music
+            comes out in every room I have a stereo.
+        </dd>
+
+        <dt>What did this all cost?</dt>
+        <dd>
+            Ugh. Don't ask. If I had known when I started, I would have been easily talked out of it. 
+        </dd>
+
+        <dt>Where did the records come from?</dt>
+        <dd>
+            Some I've had since I was five or six and appropriated a box of ex-radio-station 
+            45s my uncle Pat had given my 
+            father a decade and a half earlier. Others I've acquired through the years flipping through 
+            boxes at thrift stores and estate sales. More recently, I've started going out hunting
+            specifically for records to play in the jukebox.
+        </dd>
+
+        <dt>How many do you have?</dt>
+        <dd>
+            A lot. In fact, the impetus for the jukebox project grew out of having too many 
+            records to be able to listen to all them when it involved getting up and flipping one over
+            or putting a new one on every three minutes. I got a stack-on changer, but that only 
+            partially solved the problem. There has to be a better way, I thought, and started doing 
+            my research. Turns out the Seeburg library
+            unit fits the bill better than another other juke ever made.
+        </dd>
+
+        <dt>How so?</dt>
+        <dd>
+            It has no coin mechanism, or push-button memory, no flashing lights or bubbles. 
+            It does only one thing: its plays 45s, up to a hundred of them, over and over, from the time you turn
+            it on until the time you turn it off with a single knob.            
+        </dd>
+
+        <dt>Are you looking for more records?</dt>
+        <dd>
+            Always. But my primary criterion is 'do I like the songs?' rather than 'how much is 
+            this worth?' or even 'is it in good condition?' In this respect I'm different from 
+            a lot of record collectors out there. Condition is less critical when you're going to put
+            the record in a jukebox and play it a hundred times than it is when you're planning to 
+            play it once on a top-end turntable, rip it to your hard drive,
+            and then put it back in a protective sleeve for the rest of all time.
+        </dd>
+
+        <dt>What do you like?</dt>
+        <dd>
+            A lot of the things in the mix are simply guilty pleasures: things a white American
+            kid heard on the radio growing up in the 70s and 80s. But my favorite things here 
+            are, hands down, soul and R&B records from the 50s and 60s and funky stuff from the 
+            70s. When I see something that looks like it might be one of those, I buy it. 
+            Also, big thumbs up to anything with a steel guitar (old country, surf, Hawaii), 
+            an inventive string arrangement or complex backing vocals. And sometimes it's enough
+            just having a weird B-side.
+        </dd>
+
+        <dt>Well, I have some records I want to give you to play.</dt>
+        <dd>
+            That's wonderful. I would love to have them. Email me.
+        </dd>
+
+        <dt>I have some records I'd be willing to lend you to play.</dt>
+        <dd>
+            Okay, but be forewarned that the jukebox is a little rougher on records than when 
+            you play them on your turntable at home, so when they come back to you they are likely to 
+            be slightly abraded by the loading/unloading process and slightly worn by the act of 
+            being played repeatedly by the Pickering 340D cartridge, which tracks at about 3 grams.
+        </dd>
+
+        <dt>I don't have any records for you. Can I send you some money to go buy them yourself?</dt>
+        <dd>
+            <form style="float:right;" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="HW34M6VY2KE4S">
+            <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form> 
+            Most certainly. I may spend some of it on needles too, to keep everything sounding fresh. 
+            You can click this button or email me directly if you prefer.
+        </dd>
+
+        <dt>You sure have a lot to say about this project. Is there anything left to know?</dt>
+        <dd>
+
+          <script type="text/javascript" language="javascript">
+          <!--
+          // Email obfuscator script 2.1 by Tim Williams, University of Arizona
+          // Random encryption key feature by Andrew Moulden, Site Engineering Ltd
+          // This code is freeware provided these four comment lines remain intact
+          // A wizard to generate this code is at http://www.jottings.com/obfuscator/
+          { coded = "BKVDGup@mEE5Ipa.VEG"
+            key = "i87A0reTKhvsbkxuMztDL9cSpEnZFlm5gjIC4GU1J3yfNVQYqPWaBRH6dwoX2O"
+            shift=coded.length
+            link=""
+            for (i=0; i<coded.length; i++) {
+              if (key.indexOf(coded.charAt(i))==-1) {
+                ltr = coded.charAt(i)
+                link += (ltr)
+              }
+              else {     
+                ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
+                link += (key.charAt(ltr))
+              }
+            }
+          document.write("<a href='mailto:"+link+"'>You tell me.</a>")
+          }
+          //-->
+          </script><noscript>You tell me. Send your question to janitor (at) seeburgremote-dot-net.</noscript>
+
+        </dd>
+        
+      </dl>
+      <p style="clear:both;padding:3em 0;"><a href="/">Back to the Main Page</a></p>
+    </div>
+    <!--#include file="_copyright.shtml" -->
+
+    <script type="text/javascript">
+        <!--//<![CDATA[
+
+        $(document).ready(function () {
+            var opts = {
+                navigation: 'permanent',
+                caption:    'hover',
+                opacity:    0.8
+            }
+
+            $('#ppy1').popeye(opts);
+        });
+
+        //]]>-->
+    </script>
+
+  </BODY>
+</HTML>

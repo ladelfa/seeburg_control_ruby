@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+  
+  <HEAD>
+    <title>Seeburg Remote Camera</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />  
+    <script type="text/javascript" src="/js/jquery-1.6.min.js"></script>
+    
+    <style>
+      fieldset { font-size: 0.8em; width: 40em; margin: 0 0 1em; padding: 0 1.5em;}
+      fieldset legend { font-weight: bold }
+      #cameras { position: absolute; top: 210px; left: 65px; }
+    </style>
+  </HEAD>
+  
+  <BODY bgcolor="#c7c1c5" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    <div id="cameras"></div>
+    <div style="margin:0;padding:0;height=133px;"><img class="block" src="/images/seeburgremote_page_01.jpg" width="800" height="174" alt="SeeburgRemote.Net &mdash; An Actual Jukebox on the Actual Internet">
+    </div>
+    <div style="float:left; width:520px;"><img class="block" src="/images/seeburgremote_page_02.jpg" width="484" height="461" alt="">
+    </div>
+    <div style="margin:0 80px 30px 520px;">
+      <h1>Jukebox Camera</h1>
+      <p><a href="/">Back to the Main Page</a></p>      
+      <p style="clear:both;padding:3em 0;"><a href="/">Back to the Main Page</a></p>
+    </div>
+    
+
+    <script language="JavaScript">
+      
+      var cameras = [];
+      
+      function buildCamera(url) {
+        c = { 
+          'url': url,
+          'image': $("<img src='" + url + "' alt='" + url + "'/>") 
+        };
+        cameras.push(c);
+        
+        $("#cameras").append(c.image);
+      }
+      
+      function refreshCamera(c) {
+        newUrl = c.url + "?uniq=" + Math.random();
+        c.image.attr('src', newUrl);
+      }
+      
+      $(document).ready(function(){
+        $.ajax({
+          url: 'camera.rb?action=camera_urls',
+          dataType: 'json',
+          success: function(data){
+            $.each(data, function(i, url){
+              buildCamera(url);
+            });
+            
+            window.setInterval("refreshCamera(cameras[0]);", 500);
+          }
+        });
+       
+        
+      });
+    </script> 
+
+  </BODY>
+</HTML>
+

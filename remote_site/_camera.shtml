@@ -1,0 +1,91 @@
+<style>
+  #camera-button { 
+    position: absolute; 
+    top: 491px; 
+    left: 165px; 
+    width: 196px;
+    height: 50px;
+  }
+  #cameras { 
+    position: absolute; 
+    top: 210px; 
+    left: 65px; 
+    display: none;
+  }
+  .rotate180 {
+    -webkit-transform: rotate(180deg); 
+    -moz-transform: rotate(180deg); 
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);     
+    transform: rotate(180deg);     
+  }
+  #cameras .camera-image { 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    border: 8px solid #c7c1c5; 
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+  #cameras .camera-image-behind {
+    position: absolute; 
+    padding: 8px;
+  }
+  #cameras .slug { 
+    position: relative; 
+    top: 220px; 
+    left: 180px; 
+    color: #9c2316;
+    font-weight: bold;
+    font-size: 20px;
+  }
+</style>
+<div id="camera-button" ></div>
+<div id="cameras" ></div>
+
+<script language="JavaScript">
+  var cameras = [];
+
+  function buildCamera(url) {
+    c = { 
+      'url': url,
+      'image': $('<div><img class="camera-image-behind rotate180" src="' + url + 
+                  '"/><div class="camera-image rotate180" style="background:url(' + url + 
+                  ') no-repeat center center; width: 320px; height: 240px;" /></div>' +
+                  '<div class="slug">LIVE&nbsp;VIDEO</div>')
+    };
+    $("#cameras").append(c.image);
+    cameras.push(c);
+  }
+
+  function refreshCamera(c) {
+    if(currentlyPlaying) {
+      $("#cameras").show();    
+      newUrl = c.url + "?uniq=" + Math.random();
+      c.image.children(".camera-image").css('background-image', 'url(' + newUrl + ')'); 
+      c.image.children(".camera-image-behind").attr('src', newUrl); 
+    } 
+    else {
+      $("#cameras").hide();     
+    }
+  }
+  
+  function initCameras() {
+    $("#camera-button").off('dblclick');
+    $.ajax({
+      url: 'camera/camera.rb?action=camera_urls',
+      dataType: 'json',
+      success: function(data){
+        $.each(data, function(i, url){
+          buildCamera(url);
+        });
+        window.setInterval("refreshCamera(cameras[0]);", 500);
+      }
+    });    
+  }
+
+  $(document).ready(function(){
+    $("#camera-button").on('dblclick', initCameras);
+  });
+
+</script> 

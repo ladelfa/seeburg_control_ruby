@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<HTML>
+  <HEAD>
+    <title>Seeburg Remote &mdash; An Actual Jukebox on the Actual Internet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script type="text/javascript" src="/js/flowplayer-3.2.6.min.js"></script>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui-1.8.12.min.js"></script>
+    <script type="text/javascript" src="/js/control.js"></script>
+    <script type="text/javascript" src="/js/time_dial.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/themes/smoothness/jquery-ui-1.8.12.custom.css" />
+    <link rel="stylesheet" type="text/css" href="/css/time_dial.css" />  
+
+    <link rel="stylesheet" href="http:/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="http:/css/mobile.css" type="text/css" media="Screen" />
+    <link rel="stylesheet" href="http:/css/mobile.css" type="text/css" media="handheld" />
+  </HEAD>
+  <BODY style="background:#c7c1c5;width:480px;">
+    <!--#config timefmt="%A %B %d, %Y %I:%M %p %Z" -->  
+    <DIV  style="width:100%;margin:3 auto;">
+      <h1>A 1953 Seeburg 200-LU1 Library Unit</h1>
+      <h2>Restored, Upgraded and Internetrified for Your Listening Pleasure</h2>
+      <p>One hundred sheets of fifty-year-old plastic spun past a tiny rock by an elaborate mechanism of steel and electricity, 
+        translated into a chain of ones and zeros and spattered across the globe through sheer cooperation.</p>
+
+      <p style="font-weight:bold;" id='currentStatus'>Loading current jukebox status ...</p>
+
+      <div id="controlPanel" style="padding:30px 0px;height:100px;">
+        <div class="controller" style="padding:0; border:3px solid #9c2316;float:left;">
+          <img src="images/cancel-remote_01.png" width="158" height="28" alt=""><br/>
+          <img src="images/cancel-remote_02.png" width="19" height="32" alt=""><a class="rejectButton"
+          href="#"><img src="images/cancel-remote_03.png" width="34" height="32" border="0" alt=""></a><img 
+          src="images/cancel-remote_04.png" width="105" height="32" alt=""><br/>
+          <img src="images/cancel-remote_05.png" width="158" height="31" alt="">
+        </div>      
+        <div class="controller" style="margin-left:20px;float:left;text-align:right;font-size:12px;color:#781e07;line-height:13px;">
+          CLICK<br/>TO ADD<br/>TEN PLAY<br/>MINUTES<br/> &rarr;</div>
+        <div class="controller" style="float:left;" id="timeDial"></div>
+        <div style="display:none;" id="minutesLeft"></div>
+      </div>
+
+      <audio controls="controls">
+        <source src="http://www.seeburgremote.net/test.mp3" type="audio/mpeg" />
+        <div id="audio" style="display:block;width:500px;height:30px;"></div>
+      </audio> 
+      
+      <audio controls="controls" preload="none" src="http://www.seeburgremote.net/radio/index.mp3">
+      </audio>
+      
+      <audio controls="controls" preload="none" src="http://www.seeburgremote.net/radio">
+        <div id="audio" style="display:block;width:500px;height:30px;"></div>
+      </audio> 
+
+      <audio controls="controls" preload="none">
+        <source src="http://www.seeburgremote.net/radio" type="audio/mpeg" />
+        <div id="audio" style="display:block;width:500px;height:30px;"></div>
+      </audio> 
+      <audio controls="controls" preload="none">
+        <source src="http://www.seeburgremote.net/radio/index.mp3" type="audio/mpeg" />
+        <div id="audio" style="display:block;width:500px;height:30px;"></div>
+      </audio> 
+      <audio controls="controls" preload="none">
+        <source src="http://www.seeburgremote.net/radio/index.mp3" type="audio/MP3" />
+        <div id="audio" style="display:block;width:500px;height:30px;"></div>
+      </audio> 
+
+    </div>
+    
+    <script language="JavaScript">
+      
+      flowplayer("audio", "swf/flowplayer-3.2.7.swf",  {
+
+        // fullscreen button not needed here
+        plugins: {
+          controls: {
+            fullscreen: false,
+            height: 30,
+            autoHide: false
+          },
+          audio: {
+            url: 'swf/flowplayer.audio-live.swf'
+          }
+        },
+
+        clip: {
+          url: "http://www.seeburgremote.net/radio/",
+          autoPlay: false,
+          live: true,
+          provider: "audio",
+          onBeforeBegin: function() {
+            $f("player").close();
+          }
+        }
+
+      });
+
+    </script> 
+
+  </BODY>
+</HTML>

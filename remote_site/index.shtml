@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+  <HEAD>
+    <title>Seeburg Remote &mdash; An Actual Jukebox on the Actual Internet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script type="text/javascript" src="/js/flowplayer-3.2.6.min.js"></script>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/control.js"></script>
+    <script type="text/javascript" src="/js/time_dial.js"></script>
+    <script src="/js/jquery.jplayer.min.js"></script>
+    <script src="/js/jquery.jplayer.inspector.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/themes/smoothness/jquery-ui-1.8.12.custom.css" />
+    <link type="text/css" href="/skin/jplayer.blue.monday.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/js/mediaelement/mediaelementplayer.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/time_dial.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+
+    <meta property="og:site_name" content="Seeburg Remote"/>
+    <meta property="og:title" content="Seeburg Remote &mdash; An Actual Jukebox on the Actual Internet"/>
+    <meta property="og:description" content="A 1953 Seeburg 200-LU1 Library Unit Restored, Upgraded and Internetrified for Your Listening Pleasure"/>
+    <meta property="og:image" content="http://www.seeburgremote.net/images/preview.png"/>
+    <meta property="og:image:width" content ="400"/>
+    <meta property="og:image:height" content ="220"/>
+    <meta property="og:url" content="http://www.seeburgremote.net"/>
+
+  </HEAD>
+  <BODY bgcolor="#c7c1c5" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    <!--#config timefmt="%A %B %d, %Y %I:%M %p %Z" -->
+    <div style="margin:0;padding:0;height=133px;"><img class="block" src="/images/seeburgremote_page_01.jpg" width="800" height="174" alt="SeeburgRemote.Net &mdash; An Actual Jukebox on the Actual Internet">
+    </div>
+    <div style="float:left; width:520px;"><img class="block" src="/images/seeburgremote_page_02.jpg" width="484" height="461" alt="">
+      <div id="controlPanel" style="padding:30px 60px;height:110px;">
+        <div class="controller" style="padding:0; border:3px solid #9c2316;float:left;">
+          <img src="images/cancel-remote_01.png" width="158" height="28" alt=""><br/>
+          <img src="images/cancel-remote_02.png" width="19" height="32" alt=""><a class="rejectButton"
+          href="#"><img src="images/cancel-remote_03.png" width="34" height="32" border="0" alt=""></a><img
+          src="images/cancel-remote_04.png" width="105" height="32" alt=""><br/>
+          <img src="images/cancel-remote_05.png" width="158" height="31" alt="">
+        </div>
+        <div class="controller" style="margin-left:20px;float:left;text-align:right;font-size:12px;color:#781e07;line-height:13px;">
+          CLICK<br/>TO ADD<br/>TEN PLAY<br/>MINUTES<br/> &rarr;</div>
+        <div class="controller" style="float:left;" id="timeDial"></div>
+        <div style="display:none;" id="minutesLeft"></div>
+
+        <div style="clear:left;padding:6px 0;font-size:12px;color:#781e07;font-weight:bold;" id="current_listeners"></div>
+      </div>
+
+      <div style="padding:0 30px">
+        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/SeeburgRemote" data-widget-id="542149192949329920">Tweets by @SeeburgRemote</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
+    </div>
+    <div style="margin:0 80px 0 520px;">
+      <h1>A 1953 Seeburg 200-LU1 Library Unit</h1>
+      <h2>Restored, Upgraded and Internetrified for Your Listening Pleasure</h2>
+      <p>One hundred sheets of fifty-year-old plastic spun past a tiny rock by an elaborate mechanism of steel and electricity,
+        translated into a chain of ones and zeros and spattered across the globe through sheer cooperation.</p>
+
+      <p style="font-weight:bold;" id='currentStatus'>Loading current jukebox status ...</p>
+      <div class="player">
+        <blockquote>
+          <div id="jquery_jplayer" class="jp-jplayer"></div>
+          <div id="jp_container_1" class="jp-audio">
+            <div class="jp-type-single">
+              <div class="jp-gui jp-interface">
+                <ul class="jp-controls">
+                  <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                  <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                  <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                  <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                  <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                  <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                </ul>
+
+                <div class="jp-volume-bar">
+                  <div class="jp-volume-bar-value"></div>
+                </div>
+              </div>
+
+              <div class="jp-title">
+        Clicking the play button will start the jukebox if it's off</br>
+        Use the <a class='pointAtControlPanel' href="#">controls at lower left</a> to add more time or reject the record</br>
+        Please be patient ... loading the first record takes a few seconds!
+              </div>
+
+              <div class="jp-no-solution">
+                <span>Update Required</span>
+                To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+              </div>
+            </div>
+          </div>
+          <div id="jplayer_inspector"></div>
+
+        </blockquote>
+      </div>
+
+      <div class="controller" id="#scrollToHere">
+        <p>If you don't want to use the player above, you can
+            <a class='pointAtControlPanel' href="#">use the controls at lower left to start the jukebox</a>
+            and then click on one of these links to launch an audio player from your browser:<br/>
+          <blockquote>
+            <a href="http://www.seeburgremote.net/radio/">HTTP Stream</a> |
+            <a href="seeburg_remote.m3u">M3U File</a> |
+            <a href="seeburg_remote.ram">RealAudio RAM File</a>
+          </blockquote>
+        </p>
+        <p>If none of those work, follow these directions to connect manually:
+        <ul>
+        <li>In iTunes, click on the Advanced menu, then "Open Stream ..." and put in<br/><b>http://www.seeburgremote.net/radio/</b></li>
+        <li>In VLC Media Player, click on the Media menu, then "Open Network Stream ..." and put in<br/><b>http://www.seeburgremote.net/radio/</b></li>
+        </ul></p>
+      </div>
+      <h2>Notes:</h2>
+      <div class= "server_notice">
+        <b>Update 18 April 2013:</b>
+        Troubleshooting player connection issues from the other side of the globe, I think
+        I've fixed the problems keeping it from playing in Safari on Mac (and probably
+        a bunch of other browsers I don't use at home). Also, please note that if you have
+        a slow machine and/or web connection, starting the first record may take a matter
+        of <i>minutes</i>, not seconds. Sorry; I'm not sure there's much I can do about this.
+      </div>
+      <ul>
+        <li>I'm making lots of improvements to this page, and to the software which controls the jukebox
+          through the Internet. If you come here and things aren't working right, please try again in a short
+          while; they are likely to be less (not more) broken when you return.
+          Also, it's worth occasionally refreshing the page to load
+          whatever revisions have been posted since you first got here.
+        </li>
+        <li>In order to hear the jukebox, you need to (a) establish an audio connection, either in the browser
+          (start the jPlayer above, which uses HTML 5 or the Adobe Flash plugin depending on what your
+          browser supports) or with something that can connect
+          to an internet radio type of stream; and then (b) ensure that the physical machine itself is actually
+          turned on and playing a record. The message at the top of this page should tell you whether it's on.
+          If it's in standby mode and there's a white circle to the left with a red zero in it, click the circle to turn the
+          machine on for ten minutes. If the number is greater than zero, the machine should be playing, so check
+          your audio connection again. If the circle controller is missing altogether, then it means
+          the machine is in a mode where remote power control is not available, e.g. because I've unplugged
+          it for the night.
+        </li>
+        <li>Clicking the circle controller multiple times will add play time up to a maximum of two hours.
+        </li>
+        <li>If nobody (including you) has an audio connection to the jukebox, it will shut itself off after a minute or so.
+        </li>
+        <li>The IP adddress of the actual jukebox stream is likely to change occasionally.
+          Currently (as of <!--#flastmod file="tmp/jukebox_url.txt" -->) it's
+          <a href="http://<!--#include file="tmp/jukebox_url.txt" -->"><!--#include file="tmp/jukebox_url.txt" --></a>.
+          The redirect from <a href="http://www.seeburgremote.net/radio/">http://www.seeburgremote.net/radio/</a>
+          ought to remain up-to-date, however, so it's better to bookmark that than the current IP.
+        </li>
+        <li>The machine isn't playing 24/7, and is genally locked "off" at night (Pacific time zone).
+          If you connect and hear silence, or if you can't connect at all, that's probably why.
+          Ideally, the indicator at the top of the page will be accurate with regards
+          to whether the jukebox is on or off, but occasionally the software goofs and displays the wrong status.</li>
+        <li>I currently have limited upstream bandwidth, so if the audio goes choppy,
+          it could be because too many people are connected. Please let me know when you
+          encounter this, at the email address below.</li>
+        <li>Which records are in the machine at any given moment are purely a function
+          of my caprice and whimsy, and change very frequently. Some records sound trashy and some
+          sound very clear and clean. Such is the way of old used 45s.</li>
+      </ul>
+
+      <p>You may also be interested in my
+      <a href="library_unit.shtml">Notes on the History, Design, and Zen of the 200 LU-1</a>
+      or this <a href="faqs.shtml">List of Frequently Asked Questions That I Made Up</a>.
+
+      <p>On Twitter, I'm <a href="http://twitter.com/seeburgremote">@SeeburgRemote</a>. I tend to announce
+      substantial changes to the selection of records, or addition of features, thereon.
+      At some point in the future, I'll be sending automatic notifications out there each time the machine turns on.
+      Other Twitter-related plans
+      include the ability to reject the current playing selection and/or go to a particular slot number.</p>
+    </div>
+    <div style="clear:both;text-align:center;padding-top:2em;">
+      <strong>
+        If you have a problem connecting during the time the jukebox says it's ON,<br/>
+        or if the audio stutters or drops out, I'd really like to know about it.<br/>
+        Please email me at
+        <script type="text/javascript" language="javascript">
+          <!--
+          // Email obfuscator script 2.1 by Tim Williams, University of Arizona
+          // Random encryption key feature by Andrew Moulden, Site Engineering Ltd
+          // This code is freeware provided these four comment lines remain intact
+          // A wizard to generate this code is at http://www.jottings.com/obfuscator/
+          { coded = "cXZATzb@nQQKNbmbQ6zTQ.ZQT"
+            key = "uokLJpK9eDijVSRZqBr6PdtXUNzsC51gIQFAcM2vH8fb7OlTWxEGn4Yhm0wya3"
+            shift=coded.length
+            link=""
+            for (i=0; i<coded.length; i++) {
+              if (key.indexOf(coded.charAt(i))==-1) {
+                ltr = coded.charAt(i)
+                link += (ltr)
+              }
+              else {
+                ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
+                link += (key.charAt(ltr))
+              }
+            }
+          document.write("<a href='mailto:"+link+"'>"+link+"</a>")
+          }
+          //-->
+        </script><noscript>janitor (at) seeburgremote-dot-net</noscript>.<br/>
+      </strong>
+      <small>It would be very helpful if you could include (1) the current jukebox status, (2) the date and time,<br/>
+      and (3) what number of listeners, if any, it says are presently connected.</small>
+    </div>
+    <div style="clear:both;text-align:center;padding-top:2em;font-style:italic;">
+      The Jukebox was rebuilt, adjusted, and stereo-upgraded in February 2011 by Mr. Warren C. Rowe of El Monte, California.<br/>
+      Audio and control electronics, computer networking, software, mechanical maintenance, and record selection<br/>
+      are the ongoing handiwork of Dave LaDelfa, a resident of the city of Los Angeles.</div>
+
+    <!--#include file="_copyright.shtml" -->
+    <!--#include file="_camera.shtml" -->
+
+  </BODY>
+</HTML>

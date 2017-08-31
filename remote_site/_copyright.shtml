@@ -1,0 +1,6 @@
+<!--#config timefmt="%A %B %d, %Y" -->  
+<div style="text-align:center;font-size:0.7em;padding:4em;">This page and its contents are copyright &copy; 2011 Dave LaDelfa. 
+  Copyrights of any records played by the jukebox belong to their respective owners.<br/>
+  <a href="http://www.seeburgremote.net">SeeburgRemote.Net</a> &mdash; An Actual Jukebox on the Actual Internet.
+  This page was last modified <!--#flastmod file="index.shtml" -->.
+</div>

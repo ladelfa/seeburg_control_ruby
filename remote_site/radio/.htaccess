@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^.*$ http://142.129.236.80:80/stream.mp3 [R,L]
