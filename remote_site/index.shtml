@@ -116,10 +116,14 @@
       </div>
       <h2>Notes:</h2>
       <div class= "server_notice">
-        <b>Update 5 October 2016:</b>
-        We're back up and running again. The jukebox control software is now running on a Quantum Access LAN Fanless Mini PC Stick under Windows 10
-    (a significant upgrade from my old 2005 Dell desktop computer, running XP Server, which bit the dust at the beginning of September).
-    There may be occasional interruptions while this configuration undergoes refinement.
+        <b>Update 30 August 2017:</b>
+        After almost eleven months of attempting to coerce Windows 10 Home Edition, running on
+        a Quantum Access Mini PC Stick, into behaving like a stable 24/7 web server,
+        I've given up and rewritten the entire control program in a different language (Ruby)
+        so it will run on a Raspberry Pi 3. This configuration is little fragile at the moment, and there will be occasional
+        interruptions while it undergoes various refinements, but so far it appears to be substantially more
+        stable than the previous setup, and it definitely eats less electricity than the original
+        Visual Basic incarnation, which ran on a 2005 Dell XP Server desktop.
       </div>
       <ul>
         <li>I'm making lots of improvements to this page, and to the software which controls the jukebox
