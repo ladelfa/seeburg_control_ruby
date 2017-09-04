@@ -17,6 +17,7 @@ class UsbHidRelay
   end
 
   def self.default_device
+    return DummyRelayDevice.new if Settings.usb_hid_relay.use_dummy_relay
     enumerate.first
   end
 

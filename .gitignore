@@ -28,3 +28,5 @@ config/environments/*.local.yml
 config/secrets.yml.key
 
 /db/needle_time.txt
+/.sass-cache
+nohup.out

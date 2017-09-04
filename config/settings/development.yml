@@ -1,2 +1,5 @@
 audio_stream:
-  restart_on_boot: false
+  restart_on_launch: false
+
+usb_hid_relay:
+  use_dummy_relay: true

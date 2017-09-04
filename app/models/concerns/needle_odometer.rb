@@ -28,6 +28,7 @@ class NeedleOdometer
   def start
     @running = true
     periodically_persist! if PERIODICALLY_PERSIST
+    persist
   end
 
   def stop
@@ -55,6 +56,7 @@ class NeedleOdometer
     @last_value += secs
   end
 
+  # Only do this when installing fresh stylii
   def reset!
     File.write(filename, '0.0')
     @value_last_updated_at = Time.now
@@ -74,13 +76,17 @@ class NeedleOdometer
   def persist
     val = current_value
     File.write(filename, val.to_s)
+    #puts "#{self.object_id} persisting needle time #{val} " + (@running ? "Running" : "Not running")
     val
   end
 
   def periodically_persist!
     #puts "pp! #{last_value}"
     persist
-    NeedleOdometerJob.set(wait: PERISTANCE_INTERVAL_SECS).perform_later() #if running?
+    if running?
+      #puts "Queuing a new NeedleOdometerJob job"
+      NeedleOdometerJob.set(wait: PERISTANCE_INTERVAL_SECS).perform_later()
+    end
   end
 
   def filename

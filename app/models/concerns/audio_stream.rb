@@ -12,6 +12,14 @@ module AudioStream
     `netstat -anp 2> /dev/null | grep :#{AUDIO_STREAM_PORT} | grep ESTABLISHED | wc -l`.to_i
   end
 
+  def self.current_audio_connections
+    # e.g. ["tcp", "0", "9407", "192.168.2.164:8080", "192.168.2.173:58718", "ESTABLISHED", "14031/vlc"]
+    connection_col = 4
+
+    res = %x(netstat -anp 2> /dev/null | grep :#{AUDIO_STREAM_PORT} | grep ESTABLISHED)
+    res.split("\n").map{|line| line.split(" ")[connection_col]}
+  end
+
   def self.streaming_command
     "cvlc alsa://default -L -Z --sout-keep " +
       "--daemon --pidfile #{PID_FILE} " +

@@ -1,0 +1,50 @@
+:sass
+  table.current-stats
+    border-collapse: collapse
+
+    td, th
+      border: 2px solid #ddd
+      padding: 0.3em 1em
+      text-align: left
+      vertical-align: top
+      &.center
+        text-align: center
+      &.right
+        text-align: right
+
+    td
+      &.id
+        text-align: left
+      &.name
+        text-align: left
+      &.amount
+        text-align: right
+
+%table.current-stats
+  %tr
+    %th USB Device Serial
+    %td= @usb_hid_relay.get_device_serial
+  %tr
+    %th Audio Stream PID
+    %td= @audio_stream.pid
+  %tr
+    %th Current Audio Connections (#{@audio_stream.current_audio_connection_count})
+    %td!= @audio_stream.current_audio_connections.join("</br>")
+  %tr
+    %th Elapsed Needle Time
+    %td.right= @needle_odometer.current_value.to_hms
+  %tr
+    %th Status
+    %td= @jukebox.status
+  %tr
+    %th Public Controllable?
+    %td= @jukebox.public_controllable?
+  %tr
+    %th Private Controllable?
+    %td= @jukebox.private_controllable?
+  %tr
+    %th Powered?
+    %td= @jukebox.powered?
+  %tr
+    %th Play Time Remaining
+    %td.right= @jukebox.time_remaining.to_hms
