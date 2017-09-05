@@ -17,6 +17,7 @@ class Jukebox
   def initialize
     @relay_set = UsbHidRelay.new
     @needle_odometer = NeedleOdometer.instance
+    @audio_stream_monitor = AudioStreamMonitor.instance
   end
 
   def public_controllable?
@@ -39,14 +40,17 @@ class Jukebox
     @relay_set.toggle_relay(POWER_RELAY, true)
     @needle_odometer.start
     self.status = :public_play
+    @audio_stream_monitor.start(1)
     return powered?
   end
 
   def power_down(immediate = false)
     @relay_set.toggle_relay(POWER_RELAY, false)
     reject_record if immediate
+    clear_time
     @needle_odometer.stop
     self.status = :standby
+    @audio_stream_monitor.stop
     return !powered?
   end
 

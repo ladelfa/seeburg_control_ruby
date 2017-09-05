@@ -31,6 +31,9 @@
     %th Current Audio Connections (#{@audio_stream.current_audio_connection_count})
     %td!= @audio_stream.current_audio_connections.join("</br>")
   %tr
+    %th Time Since Last Connection
+    %td.right!= @audio_stream_monitor.last_connection_ago.to_hms
+  %tr
     %th Elapsed Needle Time
     %td.right= @needle_odometer.current_value.to_hms
   %tr
