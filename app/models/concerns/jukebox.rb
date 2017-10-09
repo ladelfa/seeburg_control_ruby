@@ -9,8 +9,13 @@ class Jukebox
   SINGLE_RECORD_POWER_TIME = Settings.jukebox.single_record_play.power_secs
   SINGLE_RECORD_NEEDLE_TIME = Settings.jukebox.single_record_play.needle_secs
 
+  RUNOUT_SAVER_ENABLED = Settings.jukebox.runout_saver.enabled
+  RUNOUT_SAVER_TIMEOUT = Settings.jukebox.runout_saver.delay_secs
+
   STATES = [:off, :standby, :public_play, :home_play, :maintenance]
   STARTUP_STATUS = Settings.jukebox.startup_status
+
+  AUDIO_STREAM_MONITOR_INTERVAL = Settings.jukebox.require_audio_connection.monitor_interval_secs
 
   attr_accessor :play_timer_guid, :status
 
@@ -18,6 +23,7 @@ class Jukebox
     @relay_set = UsbHidRelay.new
     @needle_odometer = NeedleOdometer.instance
     @audio_stream_monitor = AudioStreamMonitor.instance
+    @runout_saver = RunoutSaver.instance
   end
 
   def public_controllable?
@@ -40,7 +46,7 @@ class Jukebox
     @relay_set.toggle_relay(POWER_RELAY, true)
     @needle_odometer.start
     self.status = :public_play
-    @audio_stream_monitor.start(1)
+    @audio_stream_monitor.start(AUDIO_STREAM_MONITOR_INTERVAL)
     return powered?
   end
 
@@ -51,6 +57,7 @@ class Jukebox
     @needle_odometer.stop
     self.status = :standby
     @audio_stream_monitor.stop
+    @runout_saver.start(RUNOUT_SAVER_TIMEOUT) if RUNOUT_SAVER_ENABLED
     return !powered?
   end
 

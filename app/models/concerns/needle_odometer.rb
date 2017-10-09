@@ -4,8 +4,8 @@ class NeedleOdometer
   attr_accessor :last_value, :value_last_updated_at, :running
   attr_accessor :state
 
-  PERIODICALLY_PERSIST = true
-  PERISTANCE_INTERVAL_SECS = 10
+  PERIODICALLY_PERSIST = Settings.needle_odometer.periodically_persist
+  PERISTANCE_INTERVAL_SECS = Settings.needle_odometer.peristance_interval_secs
 
   def self.method_missing(m,*a,&b)    # :nodoc:
     if instance.respond_to?(m)

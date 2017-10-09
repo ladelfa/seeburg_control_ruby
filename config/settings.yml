@@ -12,6 +12,10 @@ audio_stream:
     sample_rate: 44100
     channels: 2
 
+needle_odometer:
+  periodically_persist: true
+  peristance_interval_secs: 10
+
 jukebox:
   add_time:
     default_minutes: 10
@@ -22,12 +26,13 @@ jukebox:
 
   require_audio_connection: # Power down if no one's been listening to the audio stream for <timeout_secs>
     enabled: true
+    monitor_interval_secs: 1
     timeout_secs: 60
 
   runout_saver:         # Prevent a record that won't auto-reject (locked groove, too wide a runout, etc.)
-    #                   # from playing forever by forcing a powerdown <delay_secs> after the PlayTimer runs out.
+    #                   # from playing forever by forcing a reject <delay_secs> after the PlayTimer runs out.
     enabled: true
-    delay_secs: 600
+    delay_secs: 600     # This should be slightly longer than the longest record that might get played.
 
   single_record_play:
     power_secs: 5       # Keep the power on this long to start a single record
