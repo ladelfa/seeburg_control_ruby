@@ -57,6 +57,12 @@ public_server:
     additional_params:
       jukebox: :seeburg
 
+radio_transmitter:
+  fm_frequency: 91.5
+  pid_file: "/tmp/radio_transmitter.pid"
+  restart_sleep_secs: 2
+
+
 usb_hid_relay:
   default_momentary_msecs: 350
 

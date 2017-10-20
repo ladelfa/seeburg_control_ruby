@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/get_current_audio_connections', to: 'application#get_current_audio_connections'
   get '/get_current_audio_connection_count', to: 'application#get_current_audio_connection_count'
   get '/restart_audio_stream', to: 'application#restart_audio_stream'
+  get '/start_radio_transmitter', to: 'application#start_radio_transmitter'
+  get '/stop_radio_transmitter', to: 'application#stop_radio_transmitter'
 
   get '/powerup', to: 'jukebox#powerup'
   get '/powerdown_delayed', to: 'jukebox#powerdown_delayed'

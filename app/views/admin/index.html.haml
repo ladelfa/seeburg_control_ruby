@@ -61,6 +61,12 @@
   = link_to('count', get_current_audio_connection_count_path)
 
 %p
+  fm radio transmitter
+  = link_to('start', start_radio_transmitter_path)
+  |
+  = link_to('stop', stop_radio_transmitter_path)
+
+%p
   = link_to('test', test_path)
   |
   = link_to('version', version_path)

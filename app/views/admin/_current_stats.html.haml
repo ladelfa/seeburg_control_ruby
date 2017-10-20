@@ -34,6 +34,14 @@
     %th Time Since Last Connection
     %td.right!= @audio_stream_monitor.last_connection_ago.to_hms
   %tr
+    %th FM Radio Transmitter
+    %td
+      - if RadioTransmitter.running?
+        BROADCASTING</br>
+        on #{RadioTransmitter::FM_FREQUENCY} MHz
+      - else
+        off
+  %tr
     %th Elapsed Needle Time
     %td.right= @needle_odometer.current_value.to_hms
   %tr
@@ -51,3 +59,4 @@
   %tr
     %th Play Time Remaining
     %td.right= @jukebox.time_remaining.to_hms
+

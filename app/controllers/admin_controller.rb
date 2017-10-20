@@ -5,5 +5,6 @@ class AdminController < ActionController::Base
     @needle_odometer = NeedleOdometer
     @audio_stream = AudioStream
     @audio_stream_monitor = AudioStreamMonitor.instance
+    @radio_transmitter = RadioTransmitter
   end
 end

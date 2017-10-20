@@ -20,6 +20,16 @@ class ApplicationController < ActionController::API
     render plain: "Audio stream has been restarted."
   end
 
+  def start_radio_transmitter
+    RadioTransmitter.restart
+    render plain: "Radio transmitter has been restarted on #{RadioTransmitter::FM_FREQUENCY} MHz."
+  end
+
+  def stop_radio_transmitter
+    RadioTransmitter.stop
+    render plain: "Radio transmitter has been stopped."
+  end
+
   def drop_audio_connections_to
     # TODO
   end
