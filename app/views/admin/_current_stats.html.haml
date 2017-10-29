@@ -34,11 +34,14 @@
     %th Time Since Last Connection
     %td.right!= @audio_stream_monitor.last_connection_ago.to_hms
   %tr
+    %th Audio Connection Required
+    %td=  @audio_stream_monitor.require_audio_connection?
+  %tr
     %th FM Radio Transmitter
     %td
       - if RadioTransmitter.running?
         BROADCASTING</br>
-        on #{RadioTransmitter::FM_FREQUENCY} MHz
+        on #{RadioTransmitter.frequency} MHz
       - else
         off
   %tr
@@ -59,4 +62,3 @@
   %tr
     %th Play Time Remaining
     %td.right= @jukebox.time_remaining.to_hms
-

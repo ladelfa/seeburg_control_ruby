@@ -4,7 +4,7 @@ class AdminController < ActionController::Base
     @usb_hid_relay = UsbHidRelay.new
     @needle_odometer = NeedleOdometer
     @audio_stream = AudioStream
-    @audio_stream_monitor = AudioStreamMonitor.instance
+    @audio_stream_monitor = AudioStreamMonitor
     @radio_transmitter = RadioTransmitter
   end
 end

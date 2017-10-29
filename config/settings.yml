@@ -2,9 +2,12 @@ application:
   port: 8081
 
 audio_stream:
-  restart_on_launch: true
+  alsa:
+    input_device:  'plughw:1,0'
+    output_device: 'plughw:0,0'
   port: 8080
   path: '/stream.mp3'
+  restart_on_launch: true
   restart_sleep_secs: 2
   vlc:
     pid_file: "/tmp/vlc.pid"
@@ -58,7 +61,7 @@ public_server:
       jukebox: :seeburg
 
 radio_transmitter:
-  fm_frequency: 91.5
+  fm_frequency: 95.1
   pid_file: "/tmp/radio_transmitter.pid"
   restart_sleep_secs: 2
 

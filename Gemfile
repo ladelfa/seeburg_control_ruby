@@ -31,6 +31,7 @@ gem 'puma', '~> 3.7'
 gem 'config'
 gem 'haml'
 gem 'hidapi'
+gem 'jquery-rails'
 gem 'sass'
 
 group :development, :test do

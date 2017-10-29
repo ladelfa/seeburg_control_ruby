@@ -4,6 +4,8 @@
 
 %h1 Seeburg Library Unit Control Administration
 
+#response
+
 .current-stats
   = render "current_stats"
 
@@ -59,6 +61,12 @@
   = link_to('current connections', get_current_audio_connections_path)
   |
   = link_to('count', get_current_audio_connection_count_path)
+  |
+  = link_to('require', require_audio_connection_path)
+  or
+  = link_to('don\'t require', dont_require_audio_connection_path)
+  connection
+
 
 %p
   fm radio transmitter
@@ -72,3 +80,14 @@
   = link_to('version', version_path)
 
 %p= link_to('', admin_path)
+
+:javascript
+  $(document).ready(function() {
+    $("a").on("click", function() {
+      resp = $.get(this.href, function( data ) {
+        alert( data );
+        location.reload();
+      });
+      return false;
+    });
+  });

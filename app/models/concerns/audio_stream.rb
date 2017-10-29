@@ -1,4 +1,6 @@
 module AudioStream
+  ALSA_INPUT_DEVICE = Settings.audio_stream.alsa.input_device
+  #ALSA_OUTPUT_DEVICE = Settings.audio_stream.alsa.output_device
   AUDIO_STREAM_PORT = Settings.audio_stream.port
   AUDIO_STREAM_PATH = Settings.audio_stream.path
   PID_FILE = Settings.audio_stream.vlc.pid_file
@@ -9,7 +11,7 @@ module AudioStream
   RESTART_ON_LAUNCH = Settings.audio_stream.restart_on_launch
 
   def self.current_audio_connection_count
-    `netstat -anp 2> /dev/null | grep :#{AUDIO_STREAM_PORT} | grep ESTABLISHED | wc -l`.to_i
+    `netstat -anp 2> a/dev/null | grep :#{AUDIO_STREAM_PORT} | grep ESTABLISHED | wc -l`.to_i
   end
 
   def self.current_audio_connections
@@ -21,10 +23,10 @@ module AudioStream
   end
 
   def self.streaming_command
-    "cvlc alsa://default -L -Z --sout-keep " +
+    "cvlc alsa://#{ALSA_INPUT_DEVICE} -L -Z --sout-keep " +
       "--daemon --pidfile #{PID_FILE} " +
       "--sout '#transcode{vcodec=none,acodec=mp3,ab=#{AVERAGE_BITRATE},channels=#{CHANNELS},samplerate=#{SAMPLERATE}}:" +
-      "duplicate{dst=display{delay=1000},dst=gather:std{mux=raw,dst=:#{AUDIO_STREAM_PORT}#{AUDIO_STREAM_PATH},access=http},select=\"novideo\"}'"
+      "duplicate{dst=display{novideo=true},dst=gather:std{mux=raw,dst=:#{AUDIO_STREAM_PORT}#{AUDIO_STREAM_PATH},access=http},select=\"novideo\"}'"
   end
 
   def self.start

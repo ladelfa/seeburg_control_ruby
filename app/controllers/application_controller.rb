@@ -21,13 +21,24 @@ class ApplicationController < ActionController::API
   end
 
   def start_radio_transmitter
+    RadioTransmitter.frequency = params[:freq] if params[:freq].presence
     RadioTransmitter.restart
-    render plain: "Radio transmitter has been restarted on #{RadioTransmitter::FM_FREQUENCY} MHz."
+    render plain: "Radio transmitter has been restarted on #{RadioTransmitter.frequency} MHz."
   end
 
   def stop_radio_transmitter
     RadioTransmitter.stop
     render plain: "Radio transmitter has been stopped."
+  end
+
+  def require_audio_connection
+    AudioStreamMonitor.require_audio_connection = true
+    render plain: "Requiring audio connection every #{AudioStreamMonitor.require_audio_connection_timeout_secs} seconds"
+  end
+
+  def dont_require_audio_connection
+    AudioStreamMonitor.require_audio_connection = false
+    render plain: "Audio connection not required for playback to continue"
   end
 
   def drop_audio_connections_to
