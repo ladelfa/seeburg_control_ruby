@@ -17,7 +17,7 @@ class AudioStreamMonitor < PeriodicEventer
     @last_connection_at = Time.now if (AudioStream.current_audio_connection_count > 0)
     #puts "LCA #{@last_connection_at}"
 
-    if require_audio_connection? && (last_connection_ago >= require_audio_connection.timeout_secs)
+    if require_audio_connection? && (last_connection_ago >= require_audio_connection_timeout_secs)
       Jukebox.power_down true
     end
   end

@@ -11,7 +11,7 @@ module AudioStream
   RESTART_ON_LAUNCH = Settings.audio_stream.restart_on_launch
 
   def self.current_audio_connection_count
-    `netstat -anp 2> a/dev/null | grep :#{AUDIO_STREAM_PORT} | grep ESTABLISHED | wc -l`.to_i
+    `netstat -anp 2> /dev/null | grep :#{AUDIO_STREAM_PORT} | grep ESTABLISHED | wc -l`.to_i
   end
 
   def self.current_audio_connections
