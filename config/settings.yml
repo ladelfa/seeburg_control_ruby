@@ -23,6 +23,9 @@ jukebox:
   add_time:
     default_minutes: 10
 
+  play_timer:
+    monitor_interval_secs: 5
+
   relay_number:
     mech_power: 2
     scan_reject: 1

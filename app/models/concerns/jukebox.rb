@@ -17,7 +17,7 @@ class Jukebox
 
   AUDIO_STREAM_MONITOR_INTERVAL = Settings.jukebox.require_audio_connection.monitor_interval_secs
 
-  attr_accessor :play_timer_guid, :status
+  attr_accessor :status
 
   def initialize
     @relay_set = UsbHidRelay.new
@@ -80,18 +80,18 @@ class Jukebox
 
   def add_time(secs)
     power_up
-    self.play_timer_guid = PlayTimer.increment(secs, self.play_timer_guid) do
+    PlayTimer.increment(secs) do
       power_down false
     end
-    PlayTimer.time_remaining(self.play_timer_guid)
+    PlayTimer.time_remaining
   end
 
   def time_remaining
-    PlayTimer.time_remaining(self.play_timer_guid)
+    PlayTimer.time_remaining
   end
 
   def clear_time
-    PlayTimer.clear_time(self.play_timer_guid)
+    PlayTimer.clear_time
   end
 
   def self.method_missing(m,*a,&b)    # :nodoc:

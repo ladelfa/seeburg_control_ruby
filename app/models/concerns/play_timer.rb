@@ -1,9 +1,10 @@
-class PlayTimer
+class PlayTimer < PeriodicEventer
   include Singleton
 
-  # Hash, e.g. {"cff9aa8c-99a6-4ac5-898d-44f15e9be961"=>2017-08-28 17:23:49 -0700}
-  attr_accessor :expirations
-  attr_accessor :callbacks
+  MONITOR_INTERVAL_SECS = Settings.jukebox.play_timer.monitor_interval_secs
+
+  attr_accessor :expiration
+  attr_accessor :on_timeout_block
 
   def self.method_missing(m,*a,&b)    # :nodoc:
     if instance.respond_to?(m)
@@ -19,46 +20,38 @@ class PlayTimer
   end
 
   def initialize
-    @expirations = {}
-    @callbacks = {}
+    @expiration = nil
+    @on_timeout_block = nil
   end
 
-  def increment(seconds, guid = nil, &callback)
-    guid =  SecureRandom.uuid if guid.nil?
+  def increment(seconds, &on_timeout_block)
+    start(MONITOR_INTERVAL_SECS) unless running?
+    @on_timeout_block = on_timeout_block
 
-    @callbacks[guid.to_s] = callback
-
-    base_dt = @expirations[guid.to_s]
+    base_dt = @expiration
     base_dt = Time.now if (base_dt.nil? || base_dt.past?)
-    new_expiration = base_dt + seconds
-
-    @expirations[guid.to_s] = new_expiration
-    PlayTimerJob.set(wait_until: new_expiration).perform_later(guid.to_s)
-    guid
+    @expiration = base_dt + seconds
   end
 
-  def time_remaining(guid)
-    return 0.0 if @expirations[guid.to_s].nil?
-    @expirations[guid.to_s] - Time.now
+  def time_remaining
+    return 0.0 if @expiration.nil?
+    @expiration - Time.now
   end
 
-  def clear_time(guid)
-    @expirations.delete guid
+  def clear_time
+    @expiration = nil
     0
   end
 
-  def check_time(guid)
-    if time_remaining(guid) <= 0
-      #puts "#{guid} #{Time.now} Times up"
-      clear_time(guid)
-      do_callback(guid)
-    else
-      #puts "#{guid} #{Time.now} Time's not yet up"
-    end
-  end
+  def callback # This gets called every MONITOR_INTERVAL_SECS seconds
+    if time_remaining <= 0
+      puts "#{Time.now} Time's up"
 
-  def do_callback(guid)
-    #puts "CALLBACK #{guid}"
-    @callbacks[guid.to_s].call
+      stop
+      clear_time
+      on_timeout_block.call
+    else
+      puts "#{Time.now} Time's not yet up (#{time_remaining} remaining)"
+    end
   end
 end
