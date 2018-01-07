@@ -25,6 +25,13 @@ class JukeboxController < ApplicationController
   def add_time
     duration = params[:seconds].presence || Jukebox::ADD_TIME_DEFAULT_MINUTES.minutes
 
+    limit_time = true # TODO make this switchable
+
+    if limit_time
+      max_secs = Jukebox::PUBLIC_PLAY_MAXIMUM_SECS - Jukebox.time_remaining.ceil
+      duration = [duration.to_i, max_secs].min
+    end
+
     Jukebox.add_time(duration.to_i)
     render plain: "Enabling play timer and adding #{duration} seconds of play time."
   end

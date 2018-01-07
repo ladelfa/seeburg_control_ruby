@@ -5,6 +5,7 @@ class Jukebox
   REJECT_RELAY = Settings.jukebox.relay_number.scan_reject
 
   ADD_TIME_DEFAULT_MINUTES = Settings.jukebox.add_time.default_minutes
+  PUBLIC_PLAY_MAXIMUM_SECS = Settings.jukebox.public_play.maximum_secs
 
   SINGLE_RECORD_POWER_TIME = Settings.jukebox.single_record_play.power_secs
   SINGLE_RECORD_NEEDLE_TIME = Settings.jukebox.single_record_play.needle_secs
@@ -24,6 +25,7 @@ class Jukebox
     @needle_odometer = NeedleOdometer.instance
     @audio_stream_monitor = AudioStreamMonitor.instance
     @runout_saver = RunoutSaver.instance
+    @play_timer = PlayTimer.instance
   end
 
   def public_controllable?
@@ -43,11 +45,13 @@ class Jukebox
   end
 
   def power_up
-    @relay_set.toggle_relay(POWER_RELAY, true)
-    @needle_odometer.start
-    self.status = :public_play
-    @audio_stream_monitor.start(AUDIO_STREAM_MONITOR_INTERVAL)
-    return powered?
+    unless powered?
+      @relay_set.toggle_relay(POWER_RELAY, true)
+      @needle_odometer.start
+      self.status = :public_play
+      @audio_stream_monitor.start(AUDIO_STREAM_MONITOR_INTERVAL)
+      return powered?
+    end
   end
 
   def power_down(immediate = false)
@@ -80,18 +84,18 @@ class Jukebox
 
   def add_time(secs)
     power_up
-    PlayTimer.increment(secs) do
-      power_down false
+    @play_timer.increment(secs) do
+      power_down(false) if powered?
     end
-    PlayTimer.time_remaining
+    @play_timer.time_remaining
   end
 
   def time_remaining
-    PlayTimer.time_remaining
+    @play_timer.time_remaining
   end
 
   def clear_time
-    PlayTimer.clear_time
+    @play_timer.clear_time
   end
 
   def self.method_missing(m,*a,&b)    # :nodoc:

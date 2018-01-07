@@ -45,13 +45,13 @@ class PlayTimer < PeriodicEventer
 
   def callback # This gets called every MONITOR_INTERVAL_SECS seconds
     if time_remaining <= 0
-      puts "#{Time.now} Time's up"
+      #puts "#{Time.now} Time's up"
 
       stop
       clear_time
       on_timeout_block.call
     else
-      puts "#{Time.now} Time's not yet up (#{time_remaining} remaining)"
+      #puts "#{Time.now} Time's not yet up (#{time_remaining} remaining)"
     end
   end
 end

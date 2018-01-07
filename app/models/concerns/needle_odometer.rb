@@ -26,9 +26,11 @@ class NeedleOdometer
   end
 
   def start
-    @running = true
-    periodically_persist! if PERIODICALLY_PERSIST
-    persist
+    unless running?
+      @running = true
+      periodically_persist! if PERIODICALLY_PERSIST
+      persist
+    end
   end
 
   def stop

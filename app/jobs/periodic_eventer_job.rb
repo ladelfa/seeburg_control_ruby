@@ -5,9 +5,9 @@ class PeriodicEventerJob < ApplicationJob
     klass = class_name.constantize
     obj = klass.instance
 
-    while obj.send(renewal_method) do
-      obj.send(callback_method)
-      sleep(seconds) if obj.send(renewal_method)
+    obj.send(callback_method)
+    if obj.send(renewal_method)
+      obj.callback_after_interval
     end
   end
 end

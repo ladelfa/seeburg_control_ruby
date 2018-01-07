@@ -17,14 +17,17 @@ audio_stream:
 
 needle_odometer:
   periodically_persist: true
-  peristance_interval_secs: 10
+  peristance_interval_secs: 30
 
 jukebox:
   add_time:
     default_minutes: 10
 
   play_timer:
-    monitor_interval_secs: 5
+    monitor_interval_secs: 10
+
+  public_play:
+    maximum_secs: 7200
 
   relay_number:
     mech_power: 2
@@ -32,7 +35,7 @@ jukebox:
 
   require_audio_connection: # Power down if no one's been listening to the audio stream for <timeout_secs>
     enabled: true
-    monitor_interval_secs: 1
+    monitor_interval_secs: 12
     timeout_secs: 60
 
   runout_saver:         # Prevent a record that won't auto-reject (locked groove, too wide a runout, etc.)

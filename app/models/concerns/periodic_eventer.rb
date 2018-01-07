@@ -13,6 +13,10 @@ class PeriodicEventer
   def start(interval = nil)
     @interval = interval.to_f
     @running = true
+    callback_after_interval
+  end
+
+  def callback_after_interval
     PeriodicEventerJob.set(wait: @interval).perform_later(@interval, self.class.name, 'callback', 'running?')
   end
 
@@ -24,6 +28,7 @@ class PeriodicEventer
     @running
   end
 
+  # Subclass should implement this
   def callback
     puts "callbacked"
   end
