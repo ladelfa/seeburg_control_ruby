@@ -77,9 +77,11 @@
 
   %p
     fm radio transmitter
-    = link_to('start', start_radio_transmitter_path)
+    = number_field_tag :freq, @radio_transmitter.frequency, in: (87.5..108.0), step: 0.2, style: 'text-align:right;width:4.5em;'
+    = link_to('start', start_radio_transmitter_path, id: 'start-fm-transmitter')
     |
     = link_to('stop', stop_radio_transmitter_path)
+
 
   %p
     = link_to('test', test_path)
@@ -93,6 +95,7 @@
   $(document).ready(function() {
 
     refreshStats = function(){ $(".current-stats").load('/admin/current_stats'); return false; };
+
     $("#refresh-now").on("click", function(){ refreshStats(); return false; });
     setInterval("refreshStats()",#{auto_refresh_sec * 1000});
     refreshStats();
@@ -104,4 +107,16 @@
       });
       return false;
     });
+
+    $(".control a#start-fm-transmitter").off("click").on("click", function() {
+      href = this.href + '?freq=' + $('#freq').val();
+      resp = $.get(href, function( data ) {
+        $(".control-output").html(data);
+        refreshStats();
+      });
+      return false;
+    });
+
+
+
   });
