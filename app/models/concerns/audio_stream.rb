@@ -22,11 +22,43 @@ module AudioStream
     res.split("\n").map{|line| line.split(" ")[connection_col]}
   end
 
-  def self.streaming_command
-    "cvlc alsa://#{ALSA_INPUT_DEVICE} -L -Z --sout-keep " +
-      "--daemon --pidfile #{PID_FILE} " +
-      "--sout '#transcode{vcodec=none,acodec=mp3,ab=#{AVERAGE_BITRATE},channels=#{CHANNELS},samplerate=#{SAMPLERATE}}:" +
-      "duplicate{dst=display{novideo=true},dst=gather:std{mux=raw,dst=:#{AUDIO_STREAM_PORT}#{AUDIO_STREAM_PATH},access=http},select=\"novideo\"}'"
+  def self.streaming_command(use_daemon = true)
+
+    # previously
+    #"cvlc alsa://#{ALSA_INPUT_DEVICE} -L -Z --sout-keep " +
+    #  "--daemon --pidfile #{PID_FILE} " +
+    #  "--sout '#transcode{vcodec=none,acodec=mp3,ab=#{AVERAGE_BITRATE},channels=#{CHANNELS},samplerate=#{SAMPLERATE}}:" +
+    #  "duplicate{dst=display{novideo=true},dst=gather:std{mux=raw,dst=:#{AUDIO_STREAM_PORT}#{AUDIO_STREAM_PATH},access=http}}'"
+
+    device = "alsa://#{ALSA_INPUT_DEVICE}"
+    opts = []
+
+    # Repeat all (default disabled) VLC will keep playing the playlist indefinitely.
+    opts << '--loop'
+
+    # Play files randomly forever (default disabled) VLC will randomly play files in the playlist until interrupted.
+    opts << '--random'
+
+    if use_daemon
+      # Run as daemon process (default disabled) Runs VLC as a background daemon process.
+      opts << "--daemon"
+
+      # Write process id into specified file.
+      opts << "--pidfile #{PID_FILE}"
+    end
+
+    # Keep stream output open (default disabled) This allows you to keep an unique stream output instance
+    # across multiple playlist items (automatically insert the gather stream output if not specified)
+    opts << "--sout-keep"
+
+    # Enable video stream output (default enabled) Choose whether the video stream should
+    # be redirected to the stream output facility when this last one is enabled.
+    opts << "--no-sout-video"
+
+    opts << "--sout '#transcode{vcodec=none,acodec=mp3,ab=#{AVERAGE_BITRATE},channels=#{CHANNELS},samplerate=#{SAMPLERATE}}:" +
+      "duplicate{dst=display{novideo=true},dst=gather:std{mux=raw,dst=:#{AUDIO_STREAM_PORT}#{AUDIO_STREAM_PATH},access=http}}'"
+
+    return "cvlc #{device} #{opts.join(' ')}"
   end
 
   def self.start

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/set_status', to: 'jukebox#set_status'
 
   get '/admin', to: 'admin#index'
+  get '/admin/current_stats', to: 'admin#current_stats'
 
   root to: redirect('/admin')
 end

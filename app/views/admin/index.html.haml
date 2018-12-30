@@ -1,92 +1,106 @@
-:sass
-  h1
-    font-size: 1.25em
+- auto_refresh_sec = Settings.admin_ui.refresh_stats_secs
 
 %h1 Seeburg Library Unit Control Administration
 
 #response
 
 .current-stats
-  = render "current_stats"
+  = # render "current_stats"
 
-%p= link_to('power up (untimed)', powerup_path)
-%p
-  power down
-  = link_to('after current record', powerdown_delayed_path)
-  |
-  = link_to('now', powerdown_now_path)
-%p= link_to('reject record', reject_path)
+.current-stats-note
+  Stats auto-refresh every #{auto_refresh_sec} seconds.
+  = link_to('refresh now', '#', id: 'refresh-now')
 
-%p
-  add time
-  =link_to('[default amount]', add_time_path)
-  |
-  =link_to('10', add_time_path(seconds: 10))
-  |
-  =link_to('60', add_time_path(seconds: 60))
-  |
-  =link_to('120', add_time_path(seconds: 120))
-  |
-  =link_to('300', add_time_path(seconds: 300))
-  seconds
-  |
-  =link_to('10', add_time_path(seconds: 10.minutes))
-  |
-  =link_to('30', add_time_path(seconds: 30.minutes))
-  |
-  =link_to('60', add_time_path(seconds: 60.minutes))
-  |
-  =link_to('90', add_time_path(seconds: 90.minutes))
-  |
-  =link_to('120', add_time_path(seconds: 120.minutes))
-  |
-  =link_to('180', add_time_path(seconds: 180.minutes))
-  minutes
+%h2 Last control output message
+.control-output
 
-%p= link_to('clear time', clear_time_path)
-%p
-  get remaining
-  = link_to('minutes', get_minutes_remaining_path)
-  |
-  = link_to('seconds', get_seconds_remaining_path)
+%h2 Controls
+.control
+  %p= link_to('power up (untimed)', powerup_path)
+  %p
+    power down
+    = link_to('after current record', powerdown_delayed_path)
+    |
+    = link_to('now', powerdown_now_path)
+  %p= link_to('reject record', reject_path)
 
-%p
-  set jukebox status to
-  != Jukebox::STATES.map{|s| link_to(s, set_status_path(status: s))}.join(" | ")
+  %p
+    add time
+    =link_to('[default amount]', add_time_path)
+    |
+    =link_to('10', add_time_path(seconds: 10))
+    |
+    =link_to('60', add_time_path(seconds: 60))
+    |
+    =link_to('120', add_time_path(seconds: 120))
+    |
+    =link_to('300', add_time_path(seconds: 300))
+    seconds
+    |
+    =link_to('10', add_time_path(seconds: 10.minutes))
+    |
+    =link_to('30', add_time_path(seconds: 30.minutes))
+    |
+    =link_to('60', add_time_path(seconds: 60.minutes))
+    |
+    =link_to('90', add_time_path(seconds: 90.minutes))
+    |
+    =link_to('120', add_time_path(seconds: 120.minutes))
+    |
+    =link_to('180', add_time_path(seconds: 180.minutes))
+    minutes
 
-%p
-  audio stream
-  = link_to('restart', restart_audio_stream_path)
-  |
-  = link_to('current connections', get_current_audio_connections_path)
-  |
-  = link_to('count', get_current_audio_connection_count_path)
-  |
-  = link_to('require', require_audio_connection_path)
-  or
-  = link_to('don\'t require', dont_require_audio_connection_path)
-  connection
+  %p= link_to('clear time', clear_time_path)
+  %p
+    get remaining
+    = link_to('minutes', get_minutes_remaining_path)
+    |
+    = link_to('seconds', get_seconds_remaining_path)
+
+  %p
+    set jukebox status to
+    != Jukebox::STATES.map{|s| link_to(s, set_status_path(status: s))}.join(" | ")
+
+  %p
+    audio stream
+    = link_to('restart', restart_audio_stream_path)
+    |
+    = link_to('current connections', get_current_audio_connections_path)
+    |
+    = link_to('count', get_current_audio_connection_count_path)
+    |
+    = link_to('require', require_audio_connection_path)
+    or
+    = link_to('don\'t require', dont_require_audio_connection_path)
+    connection
 
 
-%p
-  fm radio transmitter
-  = link_to('start', start_radio_transmitter_path)
-  |
-  = link_to('stop', stop_radio_transmitter_path)
+  %p
+    fm radio transmitter
+    = link_to('start', start_radio_transmitter_path)
+    |
+    = link_to('stop', stop_radio_transmitter_path)
 
-%p
-  = link_to('test', test_path)
-  |
-  = link_to('version', version_path)
+  %p
+    = link_to('test', test_path)
+    |
+    = link_to('version', version_path)
 
 %p= link_to('', admin_path)
 
 :javascript
+
   $(document).ready(function() {
-    $("a").on("click", function() {
+
+    refreshStats = function(){ $(".current-stats").load('/admin/current_stats'); return false; };
+    $("#refresh-now").on("click", function(){ refreshStats(); return false; });
+    setInterval("refreshStats()",#{auto_refresh_sec * 1000});
+    refreshStats();
+
+    $(".control a").on("click", function() {
       resp = $.get(this.href, function( data ) {
-        alert( data );
-        location.reload();
+        $(".control-output").html(data);
+        refreshStats();
       });
       return false;
     });
