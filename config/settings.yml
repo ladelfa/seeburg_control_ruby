@@ -8,6 +8,7 @@ audio_stream:
   alsa:
     input_device:  'plughw:1,0'
     output_device: 'plughw:0,0'
+  ensure_on_each_power_up: true
   port: 8080
   path: '/stream.mp3'
   restart_on_launch: true

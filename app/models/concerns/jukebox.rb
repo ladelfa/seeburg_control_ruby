@@ -17,6 +17,7 @@ class Jukebox
   STARTUP_STATUS = Settings.jukebox.startup_status
 
   AUDIO_STREAM_MONITOR_INTERVAL = Settings.jukebox.require_audio_connection.monitor_interval_secs
+  ENSURE_AUDIO_STREAM_EXISTS_ON_EACH_POWER_UP = Settings.audio_stream.ensure_on_each_power_up
 
   attr_accessor :status
 
@@ -46,6 +47,7 @@ class Jukebox
 
   def power_up
     unless powered?
+      AudioStream.ensure_running! if ENSURE_AUDIO_STREAM_EXISTS_ON_EACH_POWER_UP
       @relay_set.toggle_relay(POWER_RELAY, true)
       @needle_odometer.start
       self.status = :public_play

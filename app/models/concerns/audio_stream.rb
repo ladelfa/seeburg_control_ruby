@@ -71,6 +71,10 @@ module AudioStream
     system "pkill -F #{PID_FILE}"
   end
 
+  def self.ensure_running!
+    start unless running?
+  end
+
   def self.running?
     File.exists?(PID_FILE)
   end

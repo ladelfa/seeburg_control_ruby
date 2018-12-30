@@ -1,0 +1,22 @@
+[Unit]
+Description=Seeburg Control HTTP Server
+After=network.target
+
+# Uncomment for socket activation (see below)
+#Requires=puma.socket
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/seeburg_control_ruby/
+
+# ExecStart=<WD>/sbin/puma -b tcp://0.0.0.0:9292 -b ssl://0.0.0.0:9293?key=key.pem&cert=cert.pem
+# ExecStart=/usr/local/bin/puma -C /home/pi/seeburg_control_ruby/config/puma.rb
+  ExecStart=/usr/local/bin/bundle exec --keep-file-descriptors puma -e production
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
