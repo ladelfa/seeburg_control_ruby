@@ -23,6 +23,11 @@ needle_odometer:
   periodically_persist: true
   peristance_interval_secs: 30
 
+  periodically_log: true
+  log_interval_secs: 60
+  log_on_start: true
+  export_on_log: true
+
 jukebox:
   add_time:
     default_minutes: 10
@@ -67,6 +72,13 @@ public_server:
   status_cgi:
     url: "http://www.seeburgremote.net/set_jukebox_status.rb"
     status_param: 'status'
+    additional_params:
+      jukebox: :seeburg
+
+  export_needle_odometer: true
+  export_cgi:
+    url: "http://www.seeburgremote.net/update_needle_odometer.rb"
+    odometer_param: 'seconds'
     additional_params:
       jukebox: :seeburg
 

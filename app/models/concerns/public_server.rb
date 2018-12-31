@@ -7,13 +7,27 @@ module PublicServer
   UPDATE_JUKEBOX_URL_ON_LAUNCH = Settings.public_server.update_jukebox_url_on_launch
   JUKEBOX_URL_CGI_SETTINGS = Settings.public_server.jukebox_url_cgi_settings
 
+  EXPORT_NEEDLE_ODOMETER = Settings.public_server.export_needle_odometer
+  EXPORT_CGI_SETTINGS = Settings.public_server.export_cgi
+
+
   def self.update_status(s)
     if SEND_STATUS_CHANGES
       uri = URI(STATUS_CGI_SETTINGS.url)
       uri.query = URI.encode_www_form(STATUS_CGI_SETTINGS.additional_params.to_h.merge(STATUS_CGI_SETTINGS.status_param => s))
       puts uri
       res = Net::HTTP.get_response(uri)
-      puts res.body if res.is_a?(Net::HTTPSuccess)
+      #puts res.body if res.is_a?(Net::HTTPSuccess)
+    end
+  end
+
+  def self.export_needle_odometer(value)
+    if EXPORT_NEEDLE_ODOMETER
+      uri = URI(EXPORT_CGI_SETTINGS.url)
+      uri.query = URI.encode_www_form(EXPORT_CGI_SETTINGS.additional_params.to_h.merge(EXPORT_CGI_SETTINGS.odometer_param => value.to_i))
+      puts uri
+      res = Net::HTTP.get_response(uri)
+      #puts res.body if res.is_a?(Net::HTTPSuccess)
     end
   end
 

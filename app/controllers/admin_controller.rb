@@ -12,9 +12,9 @@ class AdminController < ActionController::Base
     def set_assigns
       @jukebox = Jukebox
       @usb_hid_relay = UsbHidRelay.new
-      @needle_odometer = NeedleOdometer
+      @needle_odometer = NeedleOdometer.instance
       @audio_stream = AudioStream
-      @audio_stream_monitor = AudioStreamMonitor
-      @radio_transmitter = RadioTransmitter
+      @audio_stream_monitor = AudioStreamMonitor.instance
+      @radio_transmitter = RadioTransmitter.instance
     end
 end

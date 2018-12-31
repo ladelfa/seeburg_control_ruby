@@ -16,3 +16,28 @@ h2
   height: 1em
   background: #8b92b2
   color: #ffffff
+
+table.current-stats
+  border-collapse: collapse
+
+  &.powered-up
+    background: #fffdc1
+
+  td, th
+    border: 2px solid #ddd
+    padding: 0.3em 1em
+    text-align: left
+    vertical-align: top
+    &.center
+      text-align: center
+    &.right
+      text-align: right
+
+  td
+    &.id
+      text-align: left
+    &.name
+      text-align: left
+    &.amount
+      text-align: right
+
