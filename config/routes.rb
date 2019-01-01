@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'admin#index'
   get '/admin/current_stats', to: 'admin#current_stats'
+  get '/admin/history', to: 'admin#history'
 
   root to: redirect('/admin')
 end

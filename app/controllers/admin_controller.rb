@@ -8,6 +8,9 @@ class AdminController < ActionController::Base
     render partial: 'current_stats', layout: false
   end
 
+  def history
+  end
+
   private
     def set_assigns
       @jukebox = Jukebox

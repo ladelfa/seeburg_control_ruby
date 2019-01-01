@@ -1,0 +1,6 @@
+PLAY HISTORY
+
+- hist = HistoryAnalysis.load_history_file
+- data = HistoryAnalysis.total_play_by_period(hist, :day)
+
+= line_chart data, ytitle: "Minutes of Play Time", curve: false

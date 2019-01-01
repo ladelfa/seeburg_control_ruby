@@ -3,3 +3,6 @@ audio_stream:
 
 usb_hid_relay:
   use_dummy_relay: true
+
+application:
+  port: 3000
