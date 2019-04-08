@@ -1,5 +1,5 @@
 admin_ui:
-  refresh_stats_secs: 10
+  refresh_stats_secs: 30
 
 application:
   port: 8081
@@ -21,7 +21,7 @@ audio_stream:
 
 needle_odometer:
   periodically_persist: true
-  peristance_interval_secs: 30
+  peristance_interval_secs: 120   # This is the maximum needle time that could be lost if app stops unexpectedly.
 
   periodically_log: true
   log_interval_secs: <%= 6.hours %> # This is the maximum needle time that could be lost if SD card fails (assuming that logs are exported somewhere).
