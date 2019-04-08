@@ -24,7 +24,7 @@ needle_odometer:
   peristance_interval_secs: 30
 
   periodically_log: true
-  log_interval_secs: 60
+  log_interval_secs: <%= 6.hours %> # This is the maximum needle time that could be lost if SD card fails (assuming that logs are exported somewhere).
   log_on_start: true
   export_on_log: true
 

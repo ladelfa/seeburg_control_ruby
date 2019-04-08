@@ -10,8 +10,6 @@ class UsbHidRelay
 
   DEFAULT_MOMENTARY_MSECS = Settings.usb_hid_relay.default_momentary_msecs
 
-  attr_accessor :device
-
   def self.enumerate
     HIDAPI::enumerate(VENDOR_ID, PRODUCT_ID)
   end
@@ -22,18 +20,24 @@ class UsbHidRelay
   end
 
   def initialize
-    if (dev = self.class.default_device)
-      @device = dev
-    end
+    #
+  end
+
+  def device
+    @device ||= self.class.default_device
+  end
+
+  def device=(d)
+    @device = d
   end
 
   def toggle_relay(nbr, state)
     return unless nbr.in?(1..RELAY_COUNT)
     begin
-      @device.open
-      @device.write [ REPORT_NBR, (state ? RELAY_ON : RELAY_OFF), nbr ]
+      open
+      device.write [ REPORT_NBR, (state ? RELAY_ON : RELAY_OFF), nbr ]
     ensure
-      @device.close
+      close
     end
     state
   end
@@ -46,10 +50,10 @@ class UsbHidRelay
 
   def get_device_serial
     begin
-      @device.open
-      rep = @device.get_feature_report(REPORT_NBR)
+      open
+      rep = device.get_feature_report(REPORT_NBR)
     ensure
-      @device.close
+      close
     end
 
     if rep
@@ -61,10 +65,10 @@ class UsbHidRelay
 
   def get_relay_states
     begin
-      @device.open
-      rep = @device.get_feature_report(REPORT_NBR)
+      open
+      rep = device.get_feature_report(REPORT_NBR)
     ensure
-      @device.close
+      close
     end
 
     if rep
@@ -82,45 +86,15 @@ class UsbHidRelay
 
   private
     def open
-      if @device && !@device.open?
-        @device.open
+      if device && !device.open?
+        device.open
       end
     end
 
     def close
-      if @device && @device.open?
-        @device.close
+      if device && device.open?
+        device.close
       end
     end
 
-=begin
-  def config
-    {
-      vendor_id: VENDOR_ID,
-      product_id: 0x05df,
-      serial_number: '123456',
-      simple_name: 'usb_hid_two_relay_board',
-      bus_number: 1,
-      device_address: 5,
-      interface: 0
-    }
-  end
-
-  def setup!
-    HIDAPI::SetupTaskHelper.new(
-      config[:vendor_id],
-      config[:product_id],
-      config[:simple_name],
-      config[:interface]
-    ).run
-  end
-
-  def open
-    @device = HIDAPI::open(config[:vendor_id], config[:product_id])
-  end
-
-  def close
-    @device.close
-  end
-=end
 end
