@@ -38,6 +38,12 @@
   %tr
     %th USB Device Serial
     %td= @usb_hid_relay.get_device_serial
+
+  - if (error_message = @usb_hid_relay.get_device_error)
+    %tr
+      %th USB Device Error
+      %td= error_message
+
   %tr
     %th Audio Stream PID
     %td= @audio_stream.pid

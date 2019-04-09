@@ -36,6 +36,7 @@ class UsbHidRelay
     begin
       open
       device.write [ REPORT_NBR, (state ? RELAY_ON : RELAY_OFF), nbr ]
+    rescue
     ensure
       close
     end
@@ -52,6 +53,7 @@ class UsbHidRelay
     begin
       open
       rep = device.get_feature_report(REPORT_NBR)
+    rescue
     ensure
       close
     end
@@ -67,6 +69,7 @@ class UsbHidRelay
     begin
       open
       rep = device.get_feature_report(REPORT_NBR)
+    rescue
     ensure
       close
     end
@@ -84,16 +87,52 @@ class UsbHidRelay
     get_relay_states[nbr - 1]
   end
 
+  def get_device_error
+    message = nil
+
+    if device.nil?
+      message = "Nil device object"
+    else
+      begin
+        device.open
+        device.close
+      rescue => e
+        message = "#{e}: #{e.message}"
+      ensure
+        device.close rescue nil
+      end
+    end
+
+    return message
+  end
+
+  def get_device_serial
+    begin
+      open
+      rep = device.get_feature_report(REPORT_NBR)
+    rescue
+    ensure
+      close
+    end
+
+    if rep
+      rep[0..4]
+    else
+      nil
+    end
+  end
+
+
   private
     def open
       if device && !device.open?
-        device.open
+        device.open rescue nil
       end
     end
 
     def close
       if device && device.open?
-        device.close
+        device.close rescue nil
       end
     end
 
