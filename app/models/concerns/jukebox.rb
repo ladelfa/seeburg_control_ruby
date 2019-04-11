@@ -68,7 +68,7 @@ class Jukebox
   end
 
   def powered?
-    @relay_set.get_relay_state(POWER_RELAY)
+    !!@relay_set.get_relay_state(POWER_RELAY)
   end
 
   def play_single_record

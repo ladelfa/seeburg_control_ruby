@@ -84,7 +84,11 @@ class UsbHidRelay
 
   def get_relay_state(nbr)
     return nil unless nbr.in?(1..RELAY_COUNT)
-    get_relay_states[nbr - 1]
+
+    states = get_relay_states
+    return nil if states.nil?
+
+    states[nbr - 1]
   end
 
   def get_device_error
@@ -97,7 +101,7 @@ class UsbHidRelay
         device.open
         device.close
       rescue => e
-        message = "#{e}: #{e.message}"
+        message = e.message
       ensure
         device.close rescue nil
       end
